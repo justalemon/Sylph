@@ -36,6 +36,7 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.IdentifierLabel = new System.Windows.Forms.Label();
             this.ConsoleLabel = new System.Windows.Forms.Label();
+            this.RegionLabel = new System.Windows.Forms.Label();
             this.FileGroupBox.SuspendLayout();
             this.BasicGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +79,7 @@
             // 
             this.BasicGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BasicGroupBox.Controls.Add(this.RegionLabel);
             this.BasicGroupBox.Controls.Add(this.ConsoleLabel);
             this.BasicGroupBox.Controls.Add(this.IdentifierLabel);
             this.BasicGroupBox.Controls.Add(this.NameLabel);
@@ -100,7 +102,7 @@
             // IdentifierLabel
             // 
             this.IdentifierLabel.AutoSize = true;
-            this.IdentifierLabel.Location = new System.Drawing.Point(6, 48);
+            this.IdentifierLabel.Location = new System.Drawing.Point(6, 35);
             this.IdentifierLabel.Name = "IdentifierLabel";
             this.IdentifierLabel.Size = new System.Drawing.Size(47, 13);
             this.IdentifierLabel.TabIndex = 4;
@@ -109,11 +111,20 @@
             // ConsoleLabel
             // 
             this.ConsoleLabel.AutoSize = true;
-            this.ConsoleLabel.Location = new System.Drawing.Point(6, 74);
+            this.ConsoleLabel.Location = new System.Drawing.Point(6, 48);
             this.ConsoleLabel.Name = "ConsoleLabel";
             this.ConsoleLabel.Size = new System.Drawing.Size(45, 13);
             this.ConsoleLabel.TabIndex = 5;
             this.ConsoleLabel.Text = "Console";
+            // 
+            // RegionLabel
+            // 
+            this.RegionLabel.AutoSize = true;
+            this.RegionLabel.Location = new System.Drawing.Point(6, 61);
+            this.RegionLabel.Name = "RegionLabel";
+            this.RegionLabel.Size = new System.Drawing.Size(41, 13);
+            this.RegionLabel.TabIndex = 2;
+            this.RegionLabel.Text = "Region";
             // 
             // Landing
             // 
@@ -143,6 +154,7 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label ConsoleLabel;
         private System.Windows.Forms.Label IdentifierLabel;
+        private System.Windows.Forms.Label RegionLabel;
     }
 }
 

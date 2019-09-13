@@ -48,6 +48,7 @@ namespace WhatsThisGame
                 NameLabel.Text = Type.Title;
                 IdentifierLabel.Text = Type.Identifier;
                 ConsoleLabel.Text = Type.Console;
+                RegionLabel.Text = Type.Region;
             }
         }
     }
