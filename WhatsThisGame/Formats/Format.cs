@@ -15,24 +15,17 @@ namespace WhatsThisGame.Formats
         /// <summary>
         /// The Title of the game.
         /// </summary>
-        public abstract string Title { get; }
+        public string Title { get; protected set; }
         /// <summary>
         /// Unique identifier by the console manufacturer.
         /// </summary>
-        public abstract string Identifier { get; }
+        public string Identifier { get; protected set; }
         /// <summary>
         /// Console where this game runs.
         /// </summary>
-        public abstract string Console { get; }
-        /// <summary>
-        /// The stream that should be handled.
-        /// </summary>
-        public Stream Stream { get; private set; }
+        public string Console { get; protected set; }
 
-        public Format(Stream stream)
-        {
-            Stream = stream;
-        }
+        public Format(Stream stream) { }
 
         /// <summary>
         /// Checks if the stream is compatible with the current format.
