@@ -1,4 +1,4 @@
-﻿namespace WhatsThisGame
+namespace WhatsThisGame
 {
     partial class Landing
     {
@@ -54,6 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FileTextBox.Location = new System.Drawing.Point(6, 19);
             this.FileTextBox.Name = "FileTextBox";
+            this.FileTextBox.ReadOnly = true;
             this.FileTextBox.Size = new System.Drawing.Size(683, 20);
             this.FileTextBox.TabIndex = 0;
             // 
