@@ -87,7 +87,7 @@ namespace WhatsThisGame.Formats
                     }
                     break;
                 case 'E':
-                    Region = "USA";
+                    Region = "United States of America";
                     Identifier += "-USA";
                     break;
                 case 'F':
@@ -111,7 +111,7 @@ namespace WhatsThisGame.Formats
                     Identifier += "-KOR";
                     break;
                 case 'L':
-                    Region = "USA";
+                    Region = "United States of America";
                     Identifier += "-USA";
                     break;
                 case 'M':
@@ -139,7 +139,7 @@ namespace WhatsThisGame.Formats
                     Identifier += "-RUS";
                     break;
                 case 'S':
-                    Region = "Spain/Latam";
+                    Region = "Spain/Latin America";
                     Identifier += "-SPA";
                     break;
                 case 'U':
@@ -164,6 +164,9 @@ namespace WhatsThisGame.Formats
                 case 'Z':
                     Region = "Europe";
                     Identifier += "-EUU";
+                    break;
+                default:
+                    Region = "Unknown";
                     break;
             }
         }
