@@ -174,11 +174,9 @@ namespace WhatsThisGame.Formats
         public new static bool IsCompatible(Stream stream)
         {
             // On 0x015C, there should be 0x56 and 0xCF as a checksum for the Nintendo Boot Logo
-            byte[] Checksum = new byte[2];
             stream.Position = 0x015C;
-            stream.Read(Checksum, 0, 2);
             // If there is, tell the user that is valid
-            if (Checksum[0] == 0x56 && Checksum[1] == 0xCF)
+            if (stream.ReadByte() == 0x56 && stream.ReadByte() == 0xCF)
             {
                 return true;
             }
