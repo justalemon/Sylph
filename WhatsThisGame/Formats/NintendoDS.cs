@@ -23,6 +23,26 @@ namespace WhatsThisGame.Formats
             // And save them
             Title = Encoding.UTF8.GetString(TitleBytes).Trim();
 
+            // Let's finish with the console for the game
+            // Return to the start of the file
+            stream.Position = 0x012;
+            // Check what console corresponds to the ID
+            switch (stream.ReadByte())
+            {
+                // For zero, is NDS only
+                case 0:
+                    Console = "Nintendo DS";
+                    break;
+                // For two, is NDS + DSi enhanced
+                case 2:
+                    Console = "Nintendo DS (DSi-enhanced)";
+                    break;
+                // For three, is a DSi exclusive
+                case 3:
+                    Console = "Nintendo DSi";
+                    break;
+            }
+
             // Let's continue with the Cartdige Identifier
             // Go to the respective position
             stream.Position = 0xC;
@@ -32,32 +52,13 @@ namespace WhatsThisGame.Formats
             // If the 4 bytes are zeroes, this is homebrew so return an empty string
             if (IDBytes == new byte[4] { 0, 0, 0, 0 })
             {
-                 Identifier = "";
+                Identifier = "";
             }
-            // Otherwise, save the identifier with NTR appended
+            // Otherwise, save the identifier with NTR (DS) or TWL (DSI) appended
             else
             {
-                Identifier = "NTR-" + Encoding.UTF8.GetString(IDBytes).Trim();
-            }
-
-            // Let's finish with the console for the game
-            // Return to the start of the file
-            stream.Position = 0x012;
-            // Check what console corresponds to the ID
-            switch (stream.ReadByte())
-            {
-                // For zero, is NDS only
-                case 0:
-                    Console = "NDS";
-                    break;
-                // For two, is NDS + DSi enhanced
-                case 2:
-                    Console = "NDS + DSi";
-                    break;
-                // For three, is a DSi exclusive
-                case 3:
-                    Console = "DSi";
-                    break;
+                string BaseID = Console == "Nintendo DSi" ? "TWL-" : "NTR-";
+                Identifier = BaseID + Encoding.UTF8.GetString(IDBytes).Trim();
             }
         }
 
