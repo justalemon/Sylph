@@ -1,4 +1,4 @@
-namespace WhatsThisGame
+﻿namespace WhatsThisGame
 {
     partial class Landing
     {
@@ -72,6 +72,7 @@ namespace WhatsThisGame
             this.FileButton.TabIndex = 1;
             this.FileButton.Text = "Open";
             this.FileButton.UseVisualStyleBackColor = true;
+            this.FileButton.Click += new System.EventHandler(this.FileButton_Click);
             // 
             // BasicGroupBox
             // 
