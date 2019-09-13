@@ -43,7 +43,7 @@ namespace WhatsThisGame
             this.FileGroupBox.Controls.Add(this.FileTextBox);
             this.FileGroupBox.Location = new System.Drawing.Point(12, 12);
             this.FileGroupBox.Name = "FileGroupBox";
-            this.FileGroupBox.Size = new System.Drawing.Size(776, 51);
+            this.FileGroupBox.Size = new System.Drawing.Size(343, 51);
             this.FileGroupBox.TabIndex = 0;
             this.FileGroupBox.TabStop = false;
             this.FileGroupBox.Text = "File";
@@ -55,13 +55,13 @@ namespace WhatsThisGame
             this.FileTextBox.Location = new System.Drawing.Point(6, 19);
             this.FileTextBox.Name = "FileTextBox";
             this.FileTextBox.ReadOnly = true;
-            this.FileTextBox.Size = new System.Drawing.Size(683, 20);
+            this.FileTextBox.Size = new System.Drawing.Size(250, 20);
             this.FileTextBox.TabIndex = 0;
             // 
             // FileButton
             // 
             this.FileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FileButton.Location = new System.Drawing.Point(695, 18);
+            this.FileButton.Location = new System.Drawing.Point(262, 18);
             this.FileButton.Name = "FileButton";
             this.FileButton.Size = new System.Drawing.Size(75, 23);
             this.FileButton.TabIndex = 1;
@@ -72,7 +72,7 @@ namespace WhatsThisGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(367, 387);
             this.Controls.Add(this.FileGroupBox);
             this.Name = "Landing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
