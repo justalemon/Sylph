@@ -60,6 +60,112 @@ namespace WhatsThisGame.Formats
                 string BaseID = Console == "Nintendo DSi" ? "TWL-" : "NTR-";
                 Identifier = BaseID + Encoding.UTF8.GetString(IDBytes).Trim();
             }
+
+            // Finally, proceed to check the region
+            // The following regions do not exist: B and G
+            char Character = Identifier[Identifier.Length - 1];
+            switch (Character)
+            {
+                case 'A':
+                    Region = "Asia";
+                    Identifier += "-ASI";
+                    break;
+                case 'C':
+                    Region = "China";
+                    Identifier += "-CHN";
+                    break;
+                case 'D':
+                    if (Identifier == "NTR-BQZD" || Identifier == "NTR-BMYD")
+                    {
+                        Region = "Germany";
+                        Identifier += "-GER";
+                    }
+                    else
+                    {
+                        Region = "Europe";
+                        Identifier += "-NOE";
+                    }
+                    break;
+                case 'E':
+                    Region = "USA";
+                    Identifier += "-USA";
+                    break;
+                case 'F':
+                    Region = "France";
+                    Identifier += "-FRA";
+                    break;
+                case 'H':
+                    Region = "Holland/Netherlands";
+                    Identifier += "-HOL";
+                    break;
+                case 'I':
+                    Region = "Italy";
+                    Identifier += "-ITA";
+                    break;
+                case 'J':
+                    Region = "Japan";
+                    Identifier += "-JPN";
+                    break;
+                case 'K':
+                    Region = "South Korea";
+                    Identifier += "-KOR";
+                    break;
+                case 'L':
+                    Region = "USA";
+                    Identifier += "-USA";
+                    break;
+                case 'M':
+                    Region = "Sweeden";
+                    Identifier += "-SWE";
+                    break;
+                case 'N':
+                    Region = "Norway";
+                    Identifier += "-NOR";
+                    break;
+                case 'O':
+                    Region = "International";
+                    Identifier += "-INT";
+                    break;
+                case 'P':
+                    Region = "Europe";
+                    Identifier += "-EUR";
+                    break;
+                case 'Q':
+                    Region = "Denmark";
+                    Identifier += "-DEN";
+                    break;
+                case 'R':
+                    Region = "Russia";
+                    Identifier += "-RUS";
+                    break;
+                case 'S':
+                    Region = "Spain/Latam";
+                    Identifier += "-SPA";
+                    break;
+                case 'U':
+                    Region = "Australia";
+                    Identifier += "-AUS";
+                    break;
+                case 'V':
+                    if (Identifier.StartsWith("NTR-"))
+                    {
+                        Region = "United Kingdom";
+                        Identifier += "-UKV";
+                    }
+                    else
+                    {
+                        Region = "Europe/Schengen Area";
+                        Identifier += "-EUR/EUU";
+                    }
+                    break;
+                case 'W':
+                case 'X':
+                case 'Y':
+                case 'Z':
+                    Region = "Europe";
+                    Identifier += "-EUU";
+                    break;
+            }
         }
 
         public new static bool IsCompatible(Stream stream)

@@ -24,6 +24,10 @@ namespace WhatsThisGame.Formats
         /// Console where this game runs.
         /// </summary>
         public string Console { get; protected set; }
+        /// <summary>
+        /// The readable region where this game belongs to.
+        /// </summary>
+        public string Region { get; protected set; }
 
         public Format(Stream stream) { }
 
