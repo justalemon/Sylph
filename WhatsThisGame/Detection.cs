@@ -29,6 +29,11 @@ namespace WhatsThisGame
             {
                 return new NintendoDS(stream);
             }
+            // And then go to PSP
+            else if (PlayStationPortable.IsCompatible(stream))
+            {
+                return new PlayStationPortable(stream);
+            }
             // If we failed, say that the file is invalid
             return null;
         }

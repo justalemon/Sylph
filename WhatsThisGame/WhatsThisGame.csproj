@@ -49,6 +49,7 @@
     <Compile Include="Detection.cs" />
     <Compile Include="Formats\Format.cs" />
     <Compile Include="Formats\NintendoDS.cs" />
+    <Compile Include="Formats\PlayStationPortable.cs" />
     <Compile Include="Landing.cs">
       <SubType>Form</SubType>
     </Compile>
