@@ -33,9 +33,10 @@ namespace WhatsThisGame
 
             // Then, open the file stream
             using (Stream FileStream = OpenFile.OpenFile())
+            using (BinaryReader Reader = new BinaryReader(FileStream))
             {
                 // Detect and get the correct type of game
-                Format Type = Detection.Detect(FileStream);
+                Format Type = Detection.Detect(Reader);
 
                 // If there is no game, notify the user and return
                 if (Type == null)

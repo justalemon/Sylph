@@ -22,17 +22,17 @@ namespace WhatsThisGame
     /// </summary>
     public static class Detection
     {
-        public static Format Detect(Stream stream)
+        public static Format Detect(BinaryReader reader)
         {
             // Let's start with Nintendo DS
-            if (NintendoDS.IsCompatible(stream))
+            if (NintendoDS.IsCompatible(reader))
             {
-                return new NintendoDS(stream);
+                return new NintendoDS(reader);
             }
             // And then go to PSP
-            else if (PlayStationPortable.IsCompatible(stream))
+            else if (PlayStationPortable.IsCompatible(reader))
             {
-                return new PlayStationPortable(stream);
+                return new PlayStationPortable(reader);
             }
             // If we failed, say that the file is invalid
             return null;

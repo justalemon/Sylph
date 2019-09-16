@@ -152,87 +152,83 @@ namespace WhatsThisGame.Formats
             { "XS", "Aksys Games" },
         };
 
-        public NintendoDS(Stream stream) : base(stream)
+        public NintendoDS(BinaryReader reader) : base(reader)
         {
-            // Open a BinaryReader
-            using (BinaryReader reader = new BinaryReader(stream))
+            // For safety reasons, go to the start of the stream
+            reader.BaseStream.Position = 0;
+
+            // Quick stop to grab some data from the Icon/Title area
+            // First, get the location of the Icon/Title area from the header
+            reader.BaseStream.Position = 0x68;
+            uint Location = reader.ReadUInt32();
+            // Set the location of our reader to the location of the titles and palette
+            reader.BaseStream.Position = Location + 32;
+            // And load them
+            byte[] Titles = reader.ReadBytes(0x200);
+            byte[] Palette = reader.ReadBytes(0x20);
+
+            // Move a couple of characters
+            // reader.BaseStream.Position += 256;
+            // Get the characters of the title
+            Title = Encoding.Unicode.GetString(reader.ReadBytes(0x100)).Sanitize();
+            // If the title starts with Pokemon
+            if (Title.StartsWith("Pokémon") || Title.StartsWith("The Legend of Zelda:"))
             {
-                // For safety reasons, go to the start of the stream
-                reader.BaseStream.Position = 0;
+                Title = new Regex("\n").Replace(Title, " ", 1);
+            }
 
-                // Quick stop to grab some data from the Icon/Title area
-                // First, get the location of the Icon/Title area from the header
-                reader.BaseStream.Position = 0x68;
-                uint Location = reader.ReadUInt32();
-                // Set the location of our reader to the location of the titles and palette
-                reader.BaseStream.Position = Location + 32;
-                // And load them
-                byte[] Titles = reader.ReadBytes(0x200);
-                byte[] Palette = reader.ReadBytes(0x20);
+            // Then, set the position for the console ID
+            reader.BaseStream.Position = 0x012;
+            // Read the next byte
+            byte ConsoleID = reader.ReadByte();
+            // And obtain the name from the respective dict
+            Console = Consoles.ContainsKey(ConsoleID) ? Consoles[ConsoleID] : $"Unknown (ID: {ConsoleID})";
 
-                // Move a couple of characters
-                // reader.BaseStream.Position += 256;
-                // Get the characters of the title
-                Title = Encoding.Unicode.GetString(reader.ReadBytes(0x100)).Sanitize();
-                // If the title starts with Pokemon
-                if (Title.StartsWith("Pokémon") || Title.StartsWith("The Legend of Zelda:"))
-                {
-                    Title = new Regex("\n").Replace(Title, " ", 1);
-                }
+            // Now is time for the cartdige identifier (also known as game code)
+            // Set the position to the 4 characters code
+            reader.BaseStream.Position = 0xC;
+            // Read the characters and trim the whitespaces
+            string Code = new string(reader.ReadChars(4)).Trim();
+            // To create the real code, we need to get the destination console for the game
+            string BaseID = Console == "Nintendo DSi" ? "TWL-" : "NTR-";
+            Identifier = string.IsNullOrWhiteSpace(Code) ? string.Empty : BaseID + Code + "-";
 
-                // Then, set the position for the console ID
-                reader.BaseStream.Position = 0x012;
-                // Read the next byte
-                byte ConsoleID = reader.ReadByte();
-                // And obtain the name from the respective dict
-                Console = Consoles.ContainsKey(ConsoleID) ? Consoles[ConsoleID] : $"Unknown (ID: {ConsoleID})";
+            // Time for the developer name!
+            // Set the position to the 4 characters code
+            reader.BaseStream.Position = 0x10;
+            // And read the two characters as a string
+            string DevCode = new string(reader.ReadChars(2));
+            // Now, set the developer name
+            Developer = Developers.ContainsKey(DevCode) ? Developers[DevCode] : $"Unknown (Makercode: {DevCode})";
 
-                // Now is time for the cartdige identifier (also known as game code)
-                // Set the position to the 4 characters code
-                reader.BaseStream.Position = 0xC;
-                // Read the characters and trim the whitespaces
-                string Code = new string(reader.ReadChars(4)).Trim();
-                // To create the real code, we need to get the destination console for the game
-                string BaseID = Console == "Nintendo DSi" ? "TWL-" : "NTR-";
-                Identifier = string.IsNullOrWhiteSpace(Code) ? string.Empty : BaseID + Code + "-";
-
-                // Time for the developer name!
-                // Set the position to the 4 characters code
-                reader.BaseStream.Position = 0x10;
-                // And read the two characters as a string
-                string DevCode = new string(reader.ReadChars(2));
-                // Now, set the developer name
-                Developer = Developers.ContainsKey(DevCode) ? Developers[DevCode] : $"Unknown (Makercode: {DevCode})";
-
-                // Finally, proceed to check the region
-                // The following regions do not exist: B and G
-                char Character = Identifier[Identifier.Length - 2];
-                // If the region is on the DSi only list and this is a DSi Exclusive
-                if (DSiRegions.ContainsKey(Character) && Console == "Nintendo DSi")
-                {
-                    Region = DSiRegions[Character].Name;
-                    Identifier += DSiRegions[Character].Identifier;
-                }
-                // Or if the region is on the DS list
-                else if (DSRegions.ContainsKey(Character))
-                {
-                    Region = DSRegions[Character].Name;
-                    Identifier += DSRegions[Character].Identifier;
-                }
-                // Otherwise, set the region to unknown
-                else
-                {
-                    Region = $"Unknown (code {Character})";
-                }
+            // Finally, proceed to check the region
+            // The following regions do not exist: B and G
+            char Character = Identifier[Identifier.Length - 2];
+            // If the region is on the DSi only list and this is a DSi Exclusive
+            if (DSiRegions.ContainsKey(Character) && Console == "Nintendo DSi")
+            {
+                Region = DSiRegions[Character].Name;
+                Identifier += DSiRegions[Character].Identifier;
+            }
+            // Or if the region is on the DS list
+            else if (DSRegions.ContainsKey(Character))
+            {
+                Region = DSRegions[Character].Name;
+                Identifier += DSRegions[Character].Identifier;
+            }
+            // Otherwise, set the region to unknown
+            else
+            {
+                Region = $"Unknown (code {Character})";
             }
         }
 
-        public new static bool IsCompatible(Stream stream)
+        public new static bool IsCompatible(BinaryReader reader)
         {
             // On 0x015C, there should be 0x56 and 0xCF as a checksum for the Nintendo Boot Logo
-            stream.Position = 0x015C;
+            reader.BaseStream.Position = 0x015C;
             // If there is, tell the user that is valid
-            if (stream.ReadByte() == 0x56 && stream.ReadByte() == 0xCF)
+            if (reader.ReadByte() == 0x56 && reader.ReadByte() == 0xCF)
             {
                 return true;
             }

@@ -33,14 +33,14 @@ namespace WhatsThisGame.Formats
         /// </summary>
         public string Region { get; protected set; }
 
-        public Format(Stream stream) { }
+        public Format(BinaryReader reader) { }
 
         /// <summary>
         /// Checks if the stream is compatible with the current format.
         /// </summary>
         /// <param name="stream">The open file to read.</param>
         /// <returns>true if this format can handle the file, false otherwise.</returns>
-        public static bool IsCompatible(Stream stream)
+        public static bool IsCompatible(BinaryReader reader)
         {
             throw new NotImplementedException();
         }
