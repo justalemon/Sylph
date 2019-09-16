@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -112,17 +112,20 @@ namespace WhatsThisGame.Formats
 
         public NintendoDS(Stream stream) : base(stream)
         {
-            // For safety reasons, go to the start of the stream
-            stream.Position = 0;
-
             // Open a BinaryReader
             using (BinaryReader reader = new BinaryReader(stream))
             {
+                // For safety reasons, go to the start of the stream
+                reader.BaseStream.Position = 0;
+
                 // Get the characters of the title
                 Title = new string(reader.ReadChars(12)).Trim();
-                // Then, get the console for the game
+
+                // Then, set the position for the console ID
                 reader.BaseStream.Position = 0x012;
+                // Read the next byte
                 byte ConsoleID = reader.ReadByte();
+                // And obtain the name from the respective dict
                 Console = Consoles.ContainsKey(ConsoleID) ? Consoles[ConsoleID] : $"Unknown (ID: {ConsoleID})";
 
                 // Now is time for the cartdige identifier (also known as game code)
