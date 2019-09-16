@@ -37,8 +37,12 @@
             this.ConsoleLabel = new System.Windows.Forms.Label();
             this.IdentifierLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
+            this.ImageGroupBox = new System.Windows.Forms.GroupBox();
+            this.ImagePictureBox = new System.Windows.Forms.PictureBox();
             this.FileGroupBox.SuspendLayout();
             this.BasicGroupBox.SuspendLayout();
+            this.ImageGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // FileGroupBox
@@ -126,11 +130,31 @@
             this.NameLabel.Text = "Name/Title";
             this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ImageGroupBox
+            // 
+            this.ImageGroupBox.Controls.Add(this.ImagePictureBox);
+            this.ImageGroupBox.Location = new System.Drawing.Point(12, 153);
+            this.ImageGroupBox.Name = "ImageGroupBox";
+            this.ImageGroupBox.Size = new System.Drawing.Size(343, 100);
+            this.ImageGroupBox.TabIndex = 2;
+            this.ImageGroupBox.TabStop = false;
+            this.ImageGroupBox.Text = "Image";
+            // 
+            // ImagePictureBox
+            // 
+            this.ImagePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ImagePictureBox.Location = new System.Drawing.Point(3, 16);
+            this.ImagePictureBox.Name = "ImagePictureBox";
+            this.ImagePictureBox.Size = new System.Drawing.Size(337, 81);
+            this.ImagePictureBox.TabIndex = 0;
+            this.ImagePictureBox.TabStop = false;
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(367, 387);
+            this.Controls.Add(this.ImageGroupBox);
             this.Controls.Add(this.BasicGroupBox);
             this.Controls.Add(this.FileGroupBox);
             this.Name = "Landing";
@@ -139,6 +163,8 @@
             this.FileGroupBox.ResumeLayout(false);
             this.FileGroupBox.PerformLayout();
             this.BasicGroupBox.ResumeLayout(false);
+            this.ImageGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -154,6 +180,8 @@
         private System.Windows.Forms.Label ConsoleLabel;
         private System.Windows.Forms.Label IdentifierLabel;
         private System.Windows.Forms.Label RegionLabel;
+        private System.Windows.Forms.GroupBox ImageGroupBox;
+        private System.Windows.Forms.PictureBox ImagePictureBox;
     }
 }
 
