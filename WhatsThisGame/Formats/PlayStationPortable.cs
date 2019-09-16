@@ -9,6 +9,20 @@ namespace WhatsThisGame.Formats
 {
     public class PlayStationPortable : Format
     {
+        /// <summary>
+        /// The regions available for the PS1/2/3/4 Disks, UMDs and Vita Cards.
+        /// </summary>
+        private static readonly Dictionary<char, RegionSet> Regions = new Dictionary<char, RegionSet>
+        {
+            { 'A', new RegionSet("Asia", "A") },
+            { 'C', new RegionSet("China", "C") },
+            { 'E', new RegionSet("Europe", "E") },
+            { 'H', new RegionSet("Hong Kong", "H") },
+            { 'J', new RegionSet("Japan", "J") },
+            { 'K', new RegionSet("Korea", "K") },
+            { 'U', new RegionSet("United States of America", "U") },
+        };
+
         public PlayStationPortable(BinaryReader reader) : base(reader)
         {
             // Create a place to store the position and the metadata size
@@ -59,8 +73,9 @@ namespace WhatsThisGame.Formats
             // For the console, the PSP does not has exclusives for certain variations
             Console = "PlayStation Portable";
 
-            // The region leave it empty for now
-            Region = "";
+            // The region on PlayStation Platforms is the 3rd Character on the Identifier
+            char Character = Identifier[2];
+            Region = Regions.ContainsKey(Character) ? Regions[Character].Name : $"Unknown (code {Character})";
         }
 
         public new static bool IsCompatible(BinaryReader reader)
