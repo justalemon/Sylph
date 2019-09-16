@@ -46,6 +46,7 @@ namespace WhatsThisGame
 
                 // Otherwise, fill the spaces
                 NameLabel.Text = Type.Title;
+                DeveloperLabel.Text = Type.Developer;
                 IdentifierLabel.Text = Type.Identifier;
                 ConsoleLabel.Text = Type.Console;
                 RegionLabel.Text = Type.Region;

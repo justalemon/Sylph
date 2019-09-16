@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,6 +20,10 @@ namespace WhatsThisGame.Formats
         /// Unique identifier by the console manufacturer.
         /// </summary>
         public string Identifier { get; protected set; }
+        /// <summary>
+        /// The name of the developer of the game.
+        /// </summary>
+        public string Developer { get; protected set; }
         /// <summary>
         /// Console where this game runs.
         /// </summary>
