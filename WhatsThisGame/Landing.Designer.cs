@@ -98,6 +98,8 @@
             // 
             // RegionLabel
             // 
+            this.RegionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RegionLabel.Location = new System.Drawing.Point(6, 68);
             this.RegionLabel.Name = "RegionLabel";
             this.RegionLabel.Size = new System.Drawing.Size(331, 13);
@@ -107,6 +109,8 @@
             // 
             // ConsoleLabel
             // 
+            this.ConsoleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ConsoleLabel.Location = new System.Drawing.Point(6, 55);
             this.ConsoleLabel.Name = "ConsoleLabel";
             this.ConsoleLabel.Size = new System.Drawing.Size(331, 13);
@@ -116,6 +120,8 @@
             // 
             // IdentifierLabel
             // 
+            this.IdentifierLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.IdentifierLabel.Location = new System.Drawing.Point(6, 42);
             this.IdentifierLabel.Name = "IdentifierLabel";
             this.IdentifierLabel.Size = new System.Drawing.Size(331, 13);
@@ -125,6 +131,8 @@
             // 
             // NameLabel
             // 
+            this.NameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NameLabel.Location = new System.Drawing.Point(6, 16);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(331, 13);
@@ -134,6 +142,8 @@
             // 
             // ImageGroupBox
             // 
+            this.ImageGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageGroupBox.Controls.Add(this.ImagePictureBox);
             this.ImageGroupBox.Location = new System.Drawing.Point(12, 165);
             this.ImageGroupBox.Name = "ImageGroupBox";
@@ -153,6 +163,8 @@
             // 
             // DeveloperLabel
             // 
+            this.DeveloperLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DeveloperLabel.Location = new System.Drawing.Point(6, 29);
             this.DeveloperLabel.Name = "DeveloperLabel";
             this.DeveloperLabel.Size = new System.Drawing.Size(331, 13);
