@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,54 +11,55 @@ namespace WhatsThisGame.Formats
     {
         public PlayStationPortable(Stream stream) : base(stream)
         {
-            // Store the place where the header starts
-            long Start = 0;
-            // Reset the position of the stream just in case
+            // Create a place to store the position and the metadata size
+            long Start = -1;
+            bool Huge = false;
+            // Move the stream to the start just in case
             stream.Position = 0;
-            // While we are not at the end of the stream
-            while (stream.Position != stream.Length)
+
+            // Read the stream in chunks of 4096
+            for (int i = 0; i * 4096 < stream.Length; i++)
             {
-                // Search for "P"
-                if (stream.ReadByte() == 0x50)
+                // Set the correct position of the stream
+                stream.Position = i * 4096;
+
+                // Grab the first 20 characters that correspond to the PARAM.SFO header
+                byte[] Header = new byte[20];
+                stream.Read(Header, 0, 20);
+
+                // If the header is a PSF of version 1.1 and the location of the table start is either 0xE4 or 0xB4
+                if (Header[0] == 0x00 && Header[1] == 0x50 && Header[2] == 0x53 && Header[3] == 0x46 &&
+                    Header[4] == 0x01 && Header[5] == 0x01 && Header[6] == 0x00 && Header[7] == 0x00 &&
+                    (Header[8] == 0xE4 || Header[8] == 0xB4))
                 {
-                    // Then "S"
-                    if (stream.ReadByte() == 0x53)
-                    {
-                        // And finally "F"
-                        if (stream.ReadByte() == 0x46)
-                        {
-                            // Move 4 spaces
-                            stream.Position += 4;
-                            // If the following character is not a "D", we are in the correct place
-                            if (stream.ReadByte() != 0x44)
-                            {
-                                Start = stream.Position;
-                                break;
-                            }
-                        }
-                    }
+                    // Check if we have a header bigger than normal
+                    Huge = Header[8] == 0xE4;
+                    // Select the correct start position based on the header size
+                    Start = stream.Position + (Huge ? 0x164 : 0x114);
+                    // And break the iterator
+                    break;
                 }
             }
 
-            // Let's grab the title!
-            // Go to the start of the title
-            stream.Position = 0x6F28158;
-            // Grab the first 12 bytes
-            byte[] TitleBytes = new byte[80];
-            stream.Read(TitleBytes, 0, 80);
-            // And save them
+            // For the UMD Identifier, is exactly after our start point
+            stream.Position = Start;
+            // This is a special case, because some PS1/2/3/P discs can have two characters at the end
+            // So let's grab a total of 11 characters (4 region, 5 numbers and 2 possible characters)
+            byte[] IDBytes = new byte[11];
+            stream.Read(IDBytes, 0, 11);
+            // Create the base of the identifier
+            Identifier = Encoding.UTF8.GetString(IDBytes).Trim();
+
+            // Set the position for the title
+            stream.Position = Start + (Huge ? 0x34 : 0x30);
+            // Grab the 80 next bytes (short PSF is 80 and long PSF is 84)
+            byte[] TitleBytes = new byte[0x74];
+            stream.Read(TitleBytes, 0, 0x74);
+            // And save them as the title
             Title = Encoding.UTF8.GetString(TitleBytes).Trim();
 
             // For the console, the PSP does not has exclusives for certain variations
             Console = "PlayStation Portable";
-
-            // For the CD/DVD Identifier, is located at 0x6F28128
-            stream.Position = 0x6F28128;
-            // TODO: There are some DVDs that have larger Identifiers
-            // EXAMPLE: GTA Double Pack is SLUS-27003GH and Guitar Hero 1 and 2 is SLUS-21224P2
-            byte[] IDBytes = new byte[12];
-            stream.Read(IDBytes, 0, 12);
-            Identifier = Encoding.UTF8.GetString(IDBytes).Trim();
 
             // The region leave it empty for now
             Region = "";
