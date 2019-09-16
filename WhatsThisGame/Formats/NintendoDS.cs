@@ -194,7 +194,7 @@ namespace WhatsThisGame.Formats
                 string Code = new string(reader.ReadChars(4)).Trim();
                 // To create the real code, we need to get the destination console for the game
                 string BaseID = Console == "Nintendo DSi" ? "TWL-" : "NTR-";
-                Identifier = string.IsNullOrWhiteSpace(Code) ? string.Empty : BaseID + Code;
+                Identifier = string.IsNullOrWhiteSpace(Code) ? string.Empty : BaseID + Code + "-";
 
                 // Time for the developer name!
                 // Set the position to the 4 characters code
@@ -206,7 +206,7 @@ namespace WhatsThisGame.Formats
 
                 // Finally, proceed to check the region
                 // The following regions do not exist: B and G
-                char Character = Identifier[Identifier.Length - 1];
+                char Character = Identifier[Identifier.Length - 2];
                 // If the region is on the DSi only list and this is a DSi Exclusive
                 if (DSiRegions.ContainsKey(Character) && Console == "Nintendo DSi")
                 {
