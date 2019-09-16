@@ -1,9 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using WhatsThisGame.Extensions;
 
 namespace WhatsThisGame.Formats
 {
@@ -20,6 +23,45 @@ namespace WhatsThisGame.Formats
             { 0, "Nintendo DS" },
             { 2, "Nintendo DS (DSi-enhanced)" },
             { 3, "Nintendo DSi" },
+        };
+        /// <summary>
+        /// All of the regions that are used on Nintendo DS carts.
+        /// </summary>
+        private static readonly Dictionary<char, RegionSet> DSRegions = new Dictionary<char, RegionSet>
+        {
+            { 'A', new RegionSet("Asia", "ASI") },
+
+            { 'C', new RegionSet("China", "CHN") },
+            { 'D', new RegionSet("Germany", "GER") },
+            { 'E', new RegionSet("United States of America", "USA") },
+            { 'F', new RegionSet("France", "FRA") },
+
+            { 'H', new RegionSet("Holland/Netherlands", "HOL") },
+            { 'I', new RegionSet("Italy", "ITA") },
+            { 'J', new RegionSet("Japan", "JPN") },
+            { 'K', new RegionSet("South Korea", "KOR") },
+            { 'L', new RegionSet("United States of America", "USA") },
+            { 'M', new RegionSet("Sweeden", "SWE") },
+            { 'N', new RegionSet("Norway", "NOR") },
+            { 'O', new RegionSet("International", "INT") },
+            { 'P', new RegionSet("Europe", "EUR") },
+            { 'Q', new RegionSet("Denmark", "DEN") },
+            { 'R', new RegionSet("Russia", "RUS") },
+            { 'S', new RegionSet("Spain/Latin America", "SPA") },
+            { 'T', new RegionSet("USA/Australia", "???") },  // TODO: Find the correct code
+            { 'U', new RegionSet("Australia", "AUS") },
+            { 'V', new RegionSet("United Kingdom/Australia", "UKV") },
+            { 'W', new RegionSet("Europe", "EUU") },
+            { 'X', new RegionSet("Europe", "EUU") },
+            { 'Y', new RegionSet("Europe", "EUU") },
+            { 'Z', new RegionSet("Europe", "EUU") },
+        };
+        /// <summary>
+        /// Regions that are used exclusively for DSi carts.
+        /// </summary>
+        private static readonly Dictionary<char, RegionSet> DSiRegions = new Dictionary<char, RegionSet>
+        {
+            { 'V', new RegionSet("Europe/Schengen Area", "EUR/EUU") },
         };
         /// <summary>
         /// The list of Nintendo DS/DSi developers.
@@ -165,110 +207,22 @@ namespace WhatsThisGame.Formats
                 // Finally, proceed to check the region
                 // The following regions do not exist: B and G
                 char Character = Identifier[Identifier.Length - 1];
-                switch (Character)
+                // If the region is on the DSi only list and this is a DSi Exclusive
+                if (DSiRegions.ContainsKey(Character) && Console == "Nintendo DSi")
                 {
-                    case 'A':
-                        Region = "Asia";
-                        Identifier += "-ASI";
-                        break;
-                    case 'C':
-                        Region = "China";
-                        Identifier += "-CHN";
-                        break;
-                    case 'D':
-                        if (Identifier == "NTR-BQZD" || Identifier == "NTR-BMYD")
-                        {
-                            Region = "Germany";
-                            Identifier += "-GER";
-                        }
-                        else
-                        {
-                            Region = "Europe";
-                            Identifier += "-NOE";
-                        }
-                        break;
-                    case 'E':
-                        Region = "United States of America";
-                        Identifier += "-USA";
-                        break;
-                    case 'F':
-                        Region = "France";
-                        Identifier += "-FRA";
-                        break;
-                    case 'H':
-                        Region = "Holland/Netherlands";
-                        Identifier += "-HOL";
-                        break;
-                    case 'I':
-                        Region = "Italy";
-                        Identifier += "-ITA";
-                        break;
-                    case 'J':
-                        Region = "Japan";
-                        Identifier += "-JPN";
-                        break;
-                    case 'K':
-                        Region = "South Korea";
-                        Identifier += "-KOR";
-                        break;
-                    case 'L':
-                        Region = "United States of America";
-                        Identifier += "-USA";
-                        break;
-                    case 'M':
-                        Region = "Sweeden";
-                        Identifier += "-SWE";
-                        break;
-                    case 'N':
-                        Region = "Norway";
-                        Identifier += "-NOR";
-                        break;
-                    case 'O':
-                        Region = "International";
-                        Identifier += "-INT";
-                        break;
-                    case 'P':
-                        Region = "Europe";
-                        Identifier += "-EUR";
-                        break;
-                    case 'Q':
-                        Region = "Denmark";
-                        Identifier += "-DEN";
-                        break;
-                    case 'R':
-                        Region = "Russia";
-                        Identifier += "-RUS";
-                        break;
-                    case 'S':
-                        Region = "Spain/Latin America";
-                        Identifier += "-SPA";
-                        break;
-                    case 'U':
-                        Region = "Australia";
-                        Identifier += "-AUS";
-                        break;
-                    case 'V':
-                        if (Identifier.StartsWith("NTR-"))
-                        {
-                            Region = "United Kingdom";
-                            Identifier += "-UKV";
-                        }
-                        else
-                        {
-                            Region = "Europe/Schengen Area";
-                            Identifier += "-EUR/EUU";
-                        }
-                        break;
-                    case 'W':
-                    case 'X':
-                    case 'Y':
-                    case 'Z':
-                        Region = "Europe";
-                        Identifier += "-EUU";
-                        break;
-                    default:
-                        Region = "Unknown";
-                        break;
+                    Region = DSiRegions[Character].Name;
+                    Identifier += DSiRegions[Character].Identifier;
+                }
+                // Or if the region is on the DS list
+                else if (DSRegions.ContainsKey(Character))
+                {
+                    Region = DSRegions[Character].Name;
+                    Identifier += DSRegions[Character].Identifier;
+                }
+                // Otherwise, set the region to unknown
+                else
+                {
+                    Region = $"Unknown (code {Character})";
                 }
             }
         }
