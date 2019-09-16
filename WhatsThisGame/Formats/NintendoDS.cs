@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WhatsThisGame.Formats
 {
     /// <summary>
-    /// Handheld by Nintendo.
+    /// Nintendo DS and DSi: A pair of handhelds released by Nintendo.
     /// </summary>
     public class NintendoDS : Format
     {
