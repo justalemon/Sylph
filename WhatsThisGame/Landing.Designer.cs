@@ -33,18 +33,23 @@
             this.FileButton = new System.Windows.Forms.Button();
             this.FileTextBox = new System.Windows.Forms.TextBox();
             this.BasicGroupBox = new System.Windows.Forms.GroupBox();
+            this.DeveloperLabel = new System.Windows.Forms.Label();
             this.RegionLabel = new System.Windows.Forms.Label();
             this.ConsoleLabel = new System.Windows.Forms.Label();
             this.IdentifierLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.ImageGroupBox = new System.Windows.Forms.GroupBox();
             this.ImagePictureBox = new System.Windows.Forms.PictureBox();
-            this.DeveloperLabel = new System.Windows.Forms.Label();
             this.FileGroupBox.SuspendLayout();
             this.BasicGroupBox.SuspendLayout();
             this.ImageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // OpenFile
+            // 
+            this.OpenFile.Filter = "All suported file types|*.iso;*.nds;*.dsi|PlayStation Portable|*.iso|Nintendo DS/" +
+    "DSi|*.nds;*.dsi";
             // 
             // FileGroupBox
             // 
@@ -95,6 +100,17 @@
             this.BasicGroupBox.TabIndex = 1;
             this.BasicGroupBox.TabStop = false;
             this.BasicGroupBox.Text = "Basic Information";
+            // 
+            // DeveloperLabel
+            // 
+            this.DeveloperLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeveloperLabel.Location = new System.Drawing.Point(6, 29);
+            this.DeveloperLabel.Name = "DeveloperLabel";
+            this.DeveloperLabel.Size = new System.Drawing.Size(331, 13);
+            this.DeveloperLabel.TabIndex = 6;
+            this.DeveloperLabel.Text = "Developer";
+            this.DeveloperLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // RegionLabel
             // 
@@ -160,17 +176,6 @@
             this.ImagePictureBox.Size = new System.Drawing.Size(337, 81);
             this.ImagePictureBox.TabIndex = 0;
             this.ImagePictureBox.TabStop = false;
-            // 
-            // DeveloperLabel
-            // 
-            this.DeveloperLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeveloperLabel.Location = new System.Drawing.Point(6, 29);
-            this.DeveloperLabel.Name = "DeveloperLabel";
-            this.DeveloperLabel.Size = new System.Drawing.Size(331, 13);
-            this.DeveloperLabel.TabIndex = 6;
-            this.DeveloperLabel.Text = "Developer";
-            this.DeveloperLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Landing
             // 
