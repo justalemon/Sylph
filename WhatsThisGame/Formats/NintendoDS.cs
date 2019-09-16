@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -118,8 +118,25 @@ namespace WhatsThisGame.Formats
                 // For safety reasons, go to the start of the stream
                 reader.BaseStream.Position = 0;
 
+                // Quick stop to grab some data from the Icon/Title area
+                // First, get the location of the Icon/Title area from the header
+                reader.BaseStream.Position = 0x68;
+                uint Location = reader.ReadUInt32();
+                // Set the location of our reader to the location of the titles and palette
+                reader.BaseStream.Position = Location + 32;
+                // And load them
+                byte[] Titles = reader.ReadBytes(0x200);
+                byte[] Palette = reader.ReadBytes(0x20);
+
+                // Move a couple of characters
+                // reader.BaseStream.Position += 256;
                 // Get the characters of the title
-                Title = new string(reader.ReadChars(12)).Trim();
+                Title = Encoding.Unicode.GetString(reader.ReadBytes(0x100)).Sanitize();
+                // If the title starts with Pokemon
+                if (Title.StartsWith("Pokémon") || Title.StartsWith("The Legend of Zelda:"))
+                {
+                    Title = new Regex("\n").Replace(Title, " ", 1);
+                }
 
                 // Then, set the position for the console ID
                 reader.BaseStream.Position = 0x012;
