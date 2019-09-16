@@ -30,13 +30,13 @@
         {
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.FileGroupBox = new System.Windows.Forms.GroupBox();
-            this.FileTextBox = new System.Windows.Forms.TextBox();
             this.FileButton = new System.Windows.Forms.Button();
+            this.FileTextBox = new System.Windows.Forms.TextBox();
             this.BasicGroupBox = new System.Windows.Forms.GroupBox();
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.IdentifierLabel = new System.Windows.Forms.Label();
-            this.ConsoleLabel = new System.Windows.Forms.Label();
             this.RegionLabel = new System.Windows.Forms.Label();
+            this.ConsoleLabel = new System.Windows.Forms.Label();
+            this.IdentifierLabel = new System.Windows.Forms.Label();
+            this.NameLabel = new System.Windows.Forms.Label();
             this.FileGroupBox.SuspendLayout();
             this.BasicGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -54,16 +54,6 @@
             this.FileGroupBox.TabStop = false;
             this.FileGroupBox.Text = "File";
             // 
-            // FileTextBox
-            // 
-            this.FileTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FileTextBox.Location = new System.Drawing.Point(6, 19);
-            this.FileTextBox.Name = "FileTextBox";
-            this.FileTextBox.ReadOnly = true;
-            this.FileTextBox.Size = new System.Drawing.Size(250, 20);
-            this.FileTextBox.TabIndex = 0;
-            // 
             // FileButton
             // 
             this.FileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -75,6 +65,16 @@
             this.FileButton.UseVisualStyleBackColor = true;
             this.FileButton.Click += new System.EventHandler(this.FileButton_Click);
             // 
+            // FileTextBox
+            // 
+            this.FileTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FileTextBox.Location = new System.Drawing.Point(6, 19);
+            this.FileTextBox.Name = "FileTextBox";
+            this.FileTextBox.ReadOnly = true;
+            this.FileTextBox.Size = new System.Drawing.Size(250, 20);
+            this.FileTextBox.TabIndex = 0;
+            // 
             // BasicGroupBox
             // 
             this.BasicGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -85,46 +85,46 @@
             this.BasicGroupBox.Controls.Add(this.NameLabel);
             this.BasicGroupBox.Location = new System.Drawing.Point(12, 69);
             this.BasicGroupBox.Name = "BasicGroupBox";
-            this.BasicGroupBox.Size = new System.Drawing.Size(343, 100);
+            this.BasicGroupBox.Size = new System.Drawing.Size(343, 78);
             this.BasicGroupBox.TabIndex = 1;
             this.BasicGroupBox.TabStop = false;
             this.BasicGroupBox.Text = "Basic Information";
             // 
-            // NameLabel
+            // RegionLabel
             // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(6, 22);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(60, 13);
-            this.NameLabel.TabIndex = 0;
-            this.NameLabel.Text = "Name/Title";
-            // 
-            // IdentifierLabel
-            // 
-            this.IdentifierLabel.AutoSize = true;
-            this.IdentifierLabel.Location = new System.Drawing.Point(6, 35);
-            this.IdentifierLabel.Name = "IdentifierLabel";
-            this.IdentifierLabel.Size = new System.Drawing.Size(47, 13);
-            this.IdentifierLabel.TabIndex = 4;
-            this.IdentifierLabel.Text = "Identifier";
+            this.RegionLabel.Location = new System.Drawing.Point(6, 55);
+            this.RegionLabel.Name = "RegionLabel";
+            this.RegionLabel.Size = new System.Drawing.Size(337, 13);
+            this.RegionLabel.TabIndex = 2;
+            this.RegionLabel.Text = "Region";
+            this.RegionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ConsoleLabel
             // 
-            this.ConsoleLabel.AutoSize = true;
-            this.ConsoleLabel.Location = new System.Drawing.Point(6, 48);
+            this.ConsoleLabel.Location = new System.Drawing.Point(6, 42);
             this.ConsoleLabel.Name = "ConsoleLabel";
-            this.ConsoleLabel.Size = new System.Drawing.Size(45, 13);
+            this.ConsoleLabel.Size = new System.Drawing.Size(331, 13);
             this.ConsoleLabel.TabIndex = 5;
             this.ConsoleLabel.Text = "Console";
+            this.ConsoleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // RegionLabel
+            // IdentifierLabel
             // 
-            this.RegionLabel.AutoSize = true;
-            this.RegionLabel.Location = new System.Drawing.Point(6, 61);
-            this.RegionLabel.Name = "RegionLabel";
-            this.RegionLabel.Size = new System.Drawing.Size(41, 13);
-            this.RegionLabel.TabIndex = 2;
-            this.RegionLabel.Text = "Region";
+            this.IdentifierLabel.Location = new System.Drawing.Point(6, 29);
+            this.IdentifierLabel.Name = "IdentifierLabel";
+            this.IdentifierLabel.Size = new System.Drawing.Size(331, 13);
+            this.IdentifierLabel.TabIndex = 4;
+            this.IdentifierLabel.Text = "Identifier";
+            this.IdentifierLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NameLabel
+            // 
+            this.NameLabel.Location = new System.Drawing.Point(6, 16);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(331, 13);
+            this.NameLabel.TabIndex = 0;
+            this.NameLabel.Text = "Name/Title";
+            this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Landing
             // 
@@ -139,7 +139,6 @@
             this.FileGroupBox.ResumeLayout(false);
             this.FileGroupBox.PerformLayout();
             this.BasicGroupBox.ResumeLayout(false);
-            this.BasicGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
