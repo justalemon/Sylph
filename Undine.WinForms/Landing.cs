@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Undine.Formats;
 
-namespace Undine
+namespace Undine.WinForms
 {
     public partial class Landing : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace Undine
+﻿namespace Undine.WinForms
 {
     partial class Landing
     {

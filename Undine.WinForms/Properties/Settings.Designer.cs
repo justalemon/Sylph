@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Undine.Properties {
+namespace Undine.WinForms.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

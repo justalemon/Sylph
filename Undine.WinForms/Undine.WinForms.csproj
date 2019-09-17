@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7E5FA768-8630-4F36-8197-4F209BAF530A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Undine</RootNamespace>
-    <AssemblyName>Undine</AssemblyName>
+    <RootNamespace>Undine.WinForms</RootNamespace>
+    <AssemblyName>UndineApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Undine.WinForms.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
