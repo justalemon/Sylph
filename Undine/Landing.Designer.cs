@@ -1,4 +1,4 @@
-﻿namespace WhatsThisGame
+﻿namespace Undine
 {
     partial class Landing
     {
@@ -187,7 +187,7 @@
             this.Controls.Add(this.FileGroupBox);
             this.Name = "Landing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WhatsThisGame";
+            this.Text = "Undine";
             this.FileGroupBox.ResumeLayout(false);
             this.FileGroupBox.PerformLayout();
             this.BasicGroupBox.ResumeLayout(false);

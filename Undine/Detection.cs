@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WhatsThisGame.Formats;
+using Undine.Formats;
 
-namespace WhatsThisGame
+namespace Undine
 {
     /// <summary>
     /// The type of rom that has been detected.

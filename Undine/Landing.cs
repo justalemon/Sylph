@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WhatsThisGame.Formats;
+using Undine.Formats;
 
-namespace WhatsThisGame
+namespace Undine
 {
     public partial class Landing : Form
     {

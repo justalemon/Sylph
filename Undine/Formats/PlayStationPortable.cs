@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhatsThisGame.Formats
+namespace Undine.Formats
 {
     public class PlayStationPortable : Format
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WhatsThisGame.Properties
+namespace Undine.Properties
 {
 
 

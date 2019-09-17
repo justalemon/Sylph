@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhatsThisGame.Formats
+namespace Undine.Formats
 {
     /// <summary>
     /// Interface that defines the base of all rom formats.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhatsThisGame
+namespace Undine
 {
     /// <summary>
     /// A class for saving the information of a Region.

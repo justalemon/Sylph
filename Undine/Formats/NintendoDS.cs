@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using WhatsThisGame.Extensions;
+using Undine.Extensions;
 
-namespace WhatsThisGame.Formats
+namespace Undine.Formats
 {
     /// <summary>
     /// Nintendo DS and DSi: A pair of handhelds released by Nintendo.

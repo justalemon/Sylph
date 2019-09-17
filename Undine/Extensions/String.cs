@@ -1,4 +1,4 @@
-﻿namespace WhatsThisGame.Extensions
+﻿namespace Undine.Extensions
 {
     public static class StringExtensions
     {
