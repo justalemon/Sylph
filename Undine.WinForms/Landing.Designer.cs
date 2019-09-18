@@ -1,4 +1,4 @@
-﻿namespace Undine.WinForms
+namespace Undine.WinForms
 {
     partial class Landing
     {
@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
-            this.FileGroupBox = new System.Windows.Forms.GroupBox();
-            this.FileButton = new System.Windows.Forms.Button();
-            this.FileTextBox = new System.Windows.Forms.TextBox();
             this.BasicGroupBox = new System.Windows.Forms.GroupBox();
             this.DeveloperLabel = new System.Windows.Forms.Label();
             this.RegionLabel = new System.Windows.Forms.Label();
@@ -40,50 +37,19 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.ImageGroupBox = new System.Windows.Forms.GroupBox();
             this.ImagePictureBox = new System.Windows.Forms.PictureBox();
-            this.FileGroupBox.SuspendLayout();
+            this.TopMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BasicGroupBox.SuspendLayout();
             this.ImageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).BeginInit();
+            this.TopMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenFile
             // 
             this.OpenFile.Filter = "All suported file types|*.iso;*.nds;*.dsi|PlayStation Portable|*.iso|Nintendo DS/" +
     "DSi|*.nds;*.dsi";
-            // 
-            // FileGroupBox
-            // 
-            this.FileGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FileGroupBox.Controls.Add(this.FileButton);
-            this.FileGroupBox.Controls.Add(this.FileTextBox);
-            this.FileGroupBox.Location = new System.Drawing.Point(12, 12);
-            this.FileGroupBox.Name = "FileGroupBox";
-            this.FileGroupBox.Size = new System.Drawing.Size(343, 51);
-            this.FileGroupBox.TabIndex = 0;
-            this.FileGroupBox.TabStop = false;
-            this.FileGroupBox.Text = "File";
-            // 
-            // FileButton
-            // 
-            this.FileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FileButton.Location = new System.Drawing.Point(262, 18);
-            this.FileButton.Name = "FileButton";
-            this.FileButton.Size = new System.Drawing.Size(75, 23);
-            this.FileButton.TabIndex = 1;
-            this.FileButton.Text = "Open";
-            this.FileButton.UseVisualStyleBackColor = true;
-            this.FileButton.Click += new System.EventHandler(this.FileButton_Click);
-            // 
-            // FileTextBox
-            // 
-            this.FileTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FileTextBox.Location = new System.Drawing.Point(6, 19);
-            this.FileTextBox.Name = "FileTextBox";
-            this.FileTextBox.ReadOnly = true;
-            this.FileTextBox.Size = new System.Drawing.Size(250, 20);
-            this.FileTextBox.TabIndex = 0;
             // 
             // BasicGroupBox
             // 
@@ -94,7 +60,7 @@
             this.BasicGroupBox.Controls.Add(this.ConsoleLabel);
             this.BasicGroupBox.Controls.Add(this.IdentifierLabel);
             this.BasicGroupBox.Controls.Add(this.NameLabel);
-            this.BasicGroupBox.Location = new System.Drawing.Point(12, 69);
+            this.BasicGroupBox.Location = new System.Drawing.Point(12, 27);
             this.BasicGroupBox.Name = "BasicGroupBox";
             this.BasicGroupBox.Size = new System.Drawing.Size(343, 90);
             this.BasicGroupBox.TabIndex = 1;
@@ -161,7 +127,7 @@
             this.ImageGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageGroupBox.Controls.Add(this.ImagePictureBox);
-            this.ImageGroupBox.Location = new System.Drawing.Point(12, 165);
+            this.ImageGroupBox.Location = new System.Drawing.Point(12, 123);
             this.ImageGroupBox.Name = "ImageGroupBox";
             this.ImageGroupBox.Size = new System.Drawing.Size(343, 100);
             this.ImageGroupBox.TabIndex = 2;
@@ -177,6 +143,31 @@
             this.ImagePictureBox.TabIndex = 0;
             this.ImagePictureBox.TabStop = false;
             // 
+            // TopMenuStrip
+            // 
+            this.TopMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.TopMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.TopMenuStrip.Name = "TopMenuStrip";
+            this.TopMenuStrip.Size = new System.Drawing.Size(367, 24);
+            this.TopMenuStrip.TabIndex = 3;
+            this.TopMenuStrip.Text = "menuStrip1";
+            // 
+            // FileToolStripMenuItem
+            // 
+            this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenToolStripMenuItem});
+            this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.FileToolStripMenuItem.Text = "File";
+            // 
+            // OpenToolStripMenuItem
+            // 
+            this.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
+            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenToolStripMenuItem.Text = "Open";
+            this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,25 +175,24 @@
             this.ClientSize = new System.Drawing.Size(367, 387);
             this.Controls.Add(this.ImageGroupBox);
             this.Controls.Add(this.BasicGroupBox);
-            this.Controls.Add(this.FileGroupBox);
+            this.Controls.Add(this.TopMenuStrip);
+            this.MainMenuStrip = this.TopMenuStrip;
             this.Name = "Landing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Undine";
-            this.FileGroupBox.ResumeLayout(false);
-            this.FileGroupBox.PerformLayout();
             this.BasicGroupBox.ResumeLayout(false);
             this.ImageGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).EndInit();
+            this.TopMenuStrip.ResumeLayout(false);
+            this.TopMenuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.OpenFileDialog OpenFile;
-        private System.Windows.Forms.GroupBox FileGroupBox;
-        private System.Windows.Forms.Button FileButton;
-        private System.Windows.Forms.TextBox FileTextBox;
         private System.Windows.Forms.GroupBox BasicGroupBox;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label ConsoleLabel;
@@ -211,6 +201,9 @@
         private System.Windows.Forms.GroupBox ImageGroupBox;
         private System.Windows.Forms.PictureBox ImagePictureBox;
         private System.Windows.Forms.Label DeveloperLabel;
+        private System.Windows.Forms.MenuStrip TopMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OpenToolStripMenuItem;
     }
 }
 

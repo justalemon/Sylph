@@ -19,7 +19,7 @@ namespace Undine.WinForms
             InitializeComponent();
         }
 
-        private void FileButton_Click(object sender, EventArgs e)
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Open the search file dialog
             DialogResult Result = OpenFile.ShowDialog();
@@ -28,8 +28,6 @@ namespace Undine.WinForms
             {
                 return;
             }
-            // Save the filename on the text box
-            FileTextBox.Text = OpenFile.FileName;
 
             // Then, open the file stream
             using (Stream FileStream = OpenFile.OpenFile())
