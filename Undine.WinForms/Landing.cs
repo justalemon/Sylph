@@ -14,6 +14,8 @@ namespace Undine.WinForms
 {
     public partial class Landing : Form
     {
+        private static readonly About AboutForm = new About();
+
         public Landing()
         {
             InitializeComponent();
@@ -50,6 +52,11 @@ namespace Undine.WinForms
                 ConsoleLabel.Text = Type.Console;
                 RegionLabel.Text = Type.Region;
             }
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm.ShowDialog();
         }
     }
 }
