@@ -170,7 +170,7 @@ namespace Undine.Formats
             // Move a couple of characters
             // reader.BaseStream.Position += 256;
             // Get the characters of the title
-            Title = Encoding.Unicode.GetString(reader.ReadBytes(0x100)).Sanitize();
+            Title = Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle();
             // If the title starts with Pokemon
             if (Title.StartsWith("Pokémon") || Title.StartsWith("The Legend of Zelda:"))
             {
