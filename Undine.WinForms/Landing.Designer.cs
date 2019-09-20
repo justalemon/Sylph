@@ -42,10 +42,15 @@
             this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AdvancedGroupBox = new System.Windows.Forms.GroupBox();
+            this.AdvancedListView = new System.Windows.Forms.ListView();
+            this.TypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ValueColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BasicGroupBox.SuspendLayout();
             this.ImageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).BeginInit();
             this.TopMenuStrip.SuspendLayout();
+            this.AdvancedGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenFile
@@ -55,8 +60,6 @@
             // 
             // BasicGroupBox
             // 
-            this.BasicGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.BasicGroupBox.Controls.Add(this.DeveloperLabel);
             this.BasicGroupBox.Controls.Add(this.RegionLabel);
             this.BasicGroupBox.Controls.Add(this.ConsoleLabel);
@@ -126,8 +129,6 @@
             // 
             // ImageGroupBox
             // 
-            this.ImageGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageGroupBox.Controls.Add(this.ImagePictureBox);
             this.ImageGroupBox.Location = new System.Drawing.Point(12, 133);
             this.ImageGroupBox.Name = "ImageGroupBox";
@@ -167,7 +168,7 @@
             // OpenToolStripMenuItem
             // 
             this.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
-            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.OpenToolStripMenuItem.Text = "Open";
             this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
@@ -182,15 +183,53 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.AboutToolStripMenuItem.Text = "About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // AdvancedGroupBox
+            // 
+            this.AdvancedGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AdvancedGroupBox.Controls.Add(this.AdvancedListView);
+            this.AdvancedGroupBox.Location = new System.Drawing.Point(308, 27);
+            this.AdvancedGroupBox.Name = "AdvancedGroupBox";
+            this.AdvancedGroupBox.Size = new System.Drawing.Size(464, 322);
+            this.AdvancedGroupBox.TabIndex = 4;
+            this.AdvancedGroupBox.TabStop = false;
+            this.AdvancedGroupBox.Text = "Advanced Information";
+            // 
+            // AdvancedListView
+            // 
+            this.AdvancedListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TypeColumnHeader,
+            this.ValueColumnHeader});
+            this.AdvancedListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AdvancedListView.HideSelection = false;
+            this.AdvancedListView.Location = new System.Drawing.Point(3, 16);
+            this.AdvancedListView.Name = "AdvancedListView";
+            this.AdvancedListView.Size = new System.Drawing.Size(458, 303);
+            this.AdvancedListView.TabIndex = 0;
+            this.AdvancedListView.UseCompatibleStateImageBehavior = false;
+            this.AdvancedListView.View = System.Windows.Forms.View.Details;
+            // 
+            // TypeColumnHeader
+            // 
+            this.TypeColumnHeader.Text = "Type";
+            this.TypeColumnHeader.Width = 118;
+            // 
+            // ValueColumnHeader
+            // 
+            this.ValueColumnHeader.Text = "Value";
+            this.ValueColumnHeader.Width = 336;
             // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 361);
+            this.Controls.Add(this.AdvancedGroupBox);
             this.Controls.Add(this.ImageGroupBox);
             this.Controls.Add(this.BasicGroupBox);
             this.Controls.Add(this.TopMenuStrip);
@@ -203,6 +242,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).EndInit();
             this.TopMenuStrip.ResumeLayout(false);
             this.TopMenuStrip.PerformLayout();
+            this.AdvancedGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,6 +264,10 @@
         private System.Windows.Forms.ToolStripMenuItem OpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.GroupBox AdvancedGroupBox;
+        private System.Windows.Forms.ListView AdvancedListView;
+        private System.Windows.Forms.ColumnHeader TypeColumnHeader;
+        private System.Windows.Forms.ColumnHeader ValueColumnHeader;
     }
 }
 
