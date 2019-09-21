@@ -1,8 +1,9 @@
-using CommandLine;
+﻿using CommandLine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Undine.Formats;
 
 namespace Undine.CommandLine
@@ -13,6 +14,18 @@ namespace Undine.CommandLine
         /// The launch parameters sent via the command line.
         /// </summary>
         private static Options Parameters { get; set; }
+        /// <summary>
+        /// The basic properties of a rom.
+        /// </summary>
+        private static readonly List<string> BasicProperties = new List<string>
+        {
+            "Title",
+            "Identifier",
+            "Developer",
+            "Console",
+            "Region",
+            "LocalizedTitles",
+        };
 
         public static int Main(string[] args)
         {
@@ -43,16 +56,34 @@ namespace Undine.CommandLine
                     return 4;
                 }
 
-                // Now, time for printing the rom information
-                // If the user doesn't want the complete info
-                if (!Parameters.Complete)
+                // Print the basic information
+                Console.WriteLine($"Title: {format.Title}");
+                Console.WriteLine($"Identifier: {format.Identifier}");
+                Console.WriteLine($"Developer: {format.Developer}");
+                Console.WriteLine($"Console: {format.Console}");
+                Console.WriteLine($"Region: {format.Region}");
+                Console.WriteLine($"Localized Titles: {format.LocalizedTitles.Count}");
+                foreach (KeyValuePair<string, string> keyPair in format.LocalizedTitles)
                 {
-                    // Print just some of them
-                    Console.WriteLine($"Title: {format.Title}");
-                    Console.WriteLine($"Identifier: {format.Identifier}");
-                    Console.WriteLine($"Developer: {format.Developer}");
-                    Console.WriteLine($"Console: {format.Console}");
-                    Console.WriteLine($"Region: {format.Region}");
+                    Console.WriteLine($"    {keyPair.Key}: {keyPair.Value}");
+                }
+
+                // And if the user wants the complete info
+                if (Parameters.Complete)
+                {
+                    // Add an empty line as a separator
+                    Console.WriteLine();
+
+                    // Get all of the properties
+                    foreach (PropertyInfo prop in format.GetType().GetProperties())
+                    {
+                        // If the property has not been already printed
+                        if (!BasicProperties.Contains(prop.Name))
+                        {
+                            // Do it
+                            Console.WriteLine($"{prop.Name}: {prop.GetValue(format, null)}");
+                        }
+                    }
                 }
             }
 
