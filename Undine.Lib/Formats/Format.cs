@@ -36,13 +36,24 @@ namespace Undine.Formats
         public Format(BinaryReader reader) { }
 
         /// <summary>
-        /// Checks if the stream is compatible with the current format.
+        /// Detects the type of rom based on the file contents.
         /// </summary>
-        /// <param name="stream">The open file to read.</param>
-        /// <returns>true if this format can handle the file, false otherwise.</returns>
-        public static bool IsCompatible(BinaryReader reader)
+        /// <param name="reader">The file open as a BinaryReader.</param>
+        /// <returns>The correct format for that file, null if the file is invalid or not supported.</returns>
+        public static Format Detect(BinaryReader reader)
         {
-            throw new NotImplementedException();
+            // Let's start with Nintendo DS
+            if (NintendoDS.IsCompatible(reader))
+            {
+                return new NintendoDS(reader);
+            }
+            // And then go to PSP
+            else if (PlayStationPortable.IsCompatible(reader))
+            {
+                return new PlayStationPortable(reader);
+            }
+            // If we failed, say that the file is invalid
+            return null;
         }
     }
 }

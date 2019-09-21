@@ -78,7 +78,7 @@ namespace Undine.Formats
             Region = Regions.ContainsKey(Character) ? Regions[Character].Name : $"Unknown (code {Character})";
         }
 
-        public new static bool IsCompatible(BinaryReader reader)
+        public static bool IsCompatible(BinaryReader reader)
         {
             // I could not find information about a UMD ISO, so I did my quick own research
             // From 0x8008 to 0x800F, you can find the phrase "PSP GAME" at the same exact position every time

@@ -1,4 +1,4 @@
-﻿using CommandLine;
+using CommandLine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,8 +36,8 @@ namespace Undine.CommandLine
             using (BinaryReader reader = new BinaryReader(stream))
             {
                 // Get the format for this rom
-                Format format = Detection.Detect(reader);
-                // If format is null, return with a code 4
+                Format format = Format.Detect(reader);
+                // If we were unable to detect the format, return with a code 4
                 if (format == null)
                 {
                     return 4;

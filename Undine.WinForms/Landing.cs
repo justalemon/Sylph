@@ -36,7 +36,7 @@ namespace Undine.WinForms
             using (BinaryReader Reader = new BinaryReader(FileStream))
             {
                 // Detect and get the correct type of game
-                Format Type = Detection.Detect(Reader);
+                Format Type = Format.Detect(Reader);
 
                 // If there is no game, notify the user and return
                 if (Type == null)

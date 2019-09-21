@@ -223,7 +223,7 @@ namespace Undine.Formats
             }
         }
 
-        public new static bool IsCompatible(BinaryReader reader)
+        public static bool IsCompatible(BinaryReader reader)
         {
             // On 0x015C, there should be 0x56 and 0xCF as a checksum for the Nintendo Boot Logo
             reader.BaseStream.Position = 0x015C;
