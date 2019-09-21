@@ -46,11 +46,16 @@
             this.AdvancedListView = new System.Windows.Forms.ListView();
             this.TypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ValueColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LocalizedGroupBox = new System.Windows.Forms.GroupBox();
+            this.LocalizedListView = new System.Windows.Forms.ListView();
+            this.LanguageColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TitleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BasicGroupBox.SuspendLayout();
             this.ImageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).BeginInit();
             this.TopMenuStrip.SuspendLayout();
             this.AdvancedGroupBox.SuspendLayout();
+            this.LocalizedGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenFile
@@ -129,8 +134,9 @@
             // 
             // ImageGroupBox
             // 
+            this.ImageGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ImageGroupBox.Controls.Add(this.ImagePictureBox);
-            this.ImageGroupBox.Location = new System.Drawing.Point(12, 133);
+            this.ImageGroupBox.Location = new System.Drawing.Point(15, 249);
             this.ImageGroupBox.Name = "ImageGroupBox";
             this.ImageGroupBox.Size = new System.Drawing.Size(290, 100);
             this.ImageGroupBox.TabIndex = 2;
@@ -224,11 +230,46 @@
             this.ValueColumnHeader.Text = "Value";
             this.ValueColumnHeader.Width = 301;
             // 
+            // LocalizedGroupBox
+            // 
+            this.LocalizedGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.LocalizedGroupBox.Controls.Add(this.LocalizedListView);
+            this.LocalizedGroupBox.Location = new System.Drawing.Point(12, 133);
+            this.LocalizedGroupBox.Name = "LocalizedGroupBox";
+            this.LocalizedGroupBox.Size = new System.Drawing.Size(290, 110);
+            this.LocalizedGroupBox.TabIndex = 5;
+            this.LocalizedGroupBox.TabStop = false;
+            this.LocalizedGroupBox.Text = "Localized Titles";
+            // 
+            // LocalizedListView
+            // 
+            this.LocalizedListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.LanguageColumnHeader,
+            this.TitleColumnHeader});
+            this.LocalizedListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LocalizedListView.HideSelection = false;
+            this.LocalizedListView.Location = new System.Drawing.Point(3, 16);
+            this.LocalizedListView.Name = "LocalizedListView";
+            this.LocalizedListView.Size = new System.Drawing.Size(284, 91);
+            this.LocalizedListView.TabIndex = 0;
+            this.LocalizedListView.UseCompatibleStateImageBehavior = false;
+            this.LocalizedListView.View = System.Windows.Forms.View.Tile;
+            // 
+            // LanguageColumnHeader
+            // 
+            this.LanguageColumnHeader.Text = "Language";
+            // 
+            // TitleColumnHeader
+            // 
+            this.TitleColumnHeader.Text = "Title";
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 361);
+            this.Controls.Add(this.LocalizedGroupBox);
             this.Controls.Add(this.AdvancedGroupBox);
             this.Controls.Add(this.ImageGroupBox);
             this.Controls.Add(this.BasicGroupBox);
@@ -243,6 +284,7 @@
             this.TopMenuStrip.ResumeLayout(false);
             this.TopMenuStrip.PerformLayout();
             this.AdvancedGroupBox.ResumeLayout(false);
+            this.LocalizedGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,6 +310,10 @@
         private System.Windows.Forms.ListView AdvancedListView;
         private System.Windows.Forms.ColumnHeader TypeColumnHeader;
         private System.Windows.Forms.ColumnHeader ValueColumnHeader;
+        private System.Windows.Forms.GroupBox LocalizedGroupBox;
+        private System.Windows.Forms.ListView LocalizedListView;
+        private System.Windows.Forms.ColumnHeader LanguageColumnHeader;
+        private System.Windows.Forms.ColumnHeader TitleColumnHeader;
     }
 }
 

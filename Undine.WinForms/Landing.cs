@@ -52,8 +52,15 @@ namespace Undine.WinForms
                 ConsoleLabel.Text = Type.Console;
                 RegionLabel.Text = Type.Region;
 
+                // The localized titles
+                LocalizedListView.Items.Clear();
+                foreach (KeyValuePair<string, string> locale in Type.LocalizedTitles)
+                {
+                    ListViewItem item = LocalizedListView.Items.Add(locale.Key);
+                    item.SubItems.Add(locale.Value.ToString());
+                }
+
                 // And the advanced info
-                // But first clear the existing items
                 AdvancedListView.Items.Clear();
                 foreach (KeyValuePair<string, object> prop in Type.GetAdvancedInformation())
                 {
