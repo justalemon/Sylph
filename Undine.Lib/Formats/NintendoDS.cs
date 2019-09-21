@@ -15,6 +15,63 @@ namespace Undine.Formats
     /// </summary>
     public class NintendoDS : Format
     {
+        public string RAWTitle { get; }
+        public string GameCode { get; }
+        public string MakerCode { get; }
+        public byte UnitCode { get; }
+        public byte EncryptionSeed { get; }
+        public byte DeviceCapacity { get; }
+        public byte[] Reserved01 { get; }
+        public byte[] Reserved02 { get; }
+        public byte InternalRegion { get; }
+        public byte Version { get; }
+        public bool AutoStart { get; }
+        public uint ARM9RomOffset { get; }
+        public uint ARM9EntryAddress { get; }
+        public uint ARM9RamAddress { get; }
+        public uint ARM9Size { get; }
+        public uint ARM7RomOffset { get; }
+        public uint ARM7EntryAddress { get; }
+        public uint ARM7RamAddress { get; }
+        public uint ARM7Size { get; }
+        public uint FNTOffset { get; }
+        public uint FNTSize { get; }
+        public uint FATOffset { get; }
+        public uint FATSize { get; }
+        public uint ARM9OverlayOffset { get; }
+        public uint ARM9OverlaySize { get; }
+        public uint ARM7OverlayOffset { get; }
+        public uint ARM7OverlaySize { get; }
+        public uint PortNormalCommands { get; }
+        public uint PortKEY1Commands { get; }
+        public uint IconTitleOffset { get; }
+        public ushort SecureAreaCRC16 { get; }
+        public ushort SecureAreaDelay { get; }
+        public uint ARM9AutoLoad { get; }
+        public uint ARM7AutoLoad { get; }
+        public ulong SecureAreaDisable { get; }
+        public uint ROMSize { get; }
+        public uint HeaderSize { get; }
+        public byte[] Reserved03 { get; }
+        public byte[] Reserved04 { get; }
+        public byte[] Reserved05 { get; }
+        public ushort NintendoLogoCRC16 { get; }
+        public ushort HeaderCRC16 { get; }
+        public uint DebugROMOffset { get; }
+        public uint DebugSize { get; }
+        public uint DebugRAMAddress { get; }
+        public byte[] Reserved06 { get; }
+        public byte[] Reserved07 { get; }
+
+        public ushort IconTitleVersion { get; }
+        public ushort EntriesCRC16 { get; }
+        public ushort EntriesCRC16v2 { get; }
+        public ushort EntriesCRC16v3 { get; }
+        public ushort EntriesCRC16v259 { get; }
+        public byte[] ReservedHeader01 { get; }
+        public byte[] IconBitmap { get; }
+        public byte[] IconPalette { get; }
+
         /// <summary>
         /// The possible console values of a cart.
         /// </summary>
@@ -157,52 +214,88 @@ namespace Undine.Formats
             // For safety reasons, go to the start of the stream
             reader.BaseStream.Position = 0;
 
-            // Quick stop to grab some data from the Icon/Title area
-            // First, get the location of the Icon/Title area from the header
-            reader.BaseStream.Position = 0x68;
-            uint Location = reader.ReadUInt32();
-            // Set the location of our reader to the location of the titles and palette
-            reader.BaseStream.Position = Location + 32;
-            // And load them
-            byte[] Titles = reader.ReadBytes(0x200);
-            byte[] Palette = reader.ReadBytes(0x20);
+            // Now, grab every single bit of data from the cart
+            // DS Header Spec: http://problemkaputt.de/gbatek.htm#dscartridgeheader
+            RAWTitle = new string(reader.ReadChars(12)).SanitizeTitle();
+            GameCode = new string(reader.ReadChars(4));
+            MakerCode = new string(reader.ReadChars(2));
+            UnitCode = reader.ReadByte();
+            EncryptionSeed = reader.ReadByte();
+            DeviceCapacity = reader.ReadByte();
+            Reserved01 = reader.ReadBytes(7);
+            Reserved02 = reader.ReadBytes(1);
+            InternalRegion = reader.ReadByte();
+            Version = reader.ReadByte();
+            AutoStart = reader.ReadBoolean();
+            ARM9RomOffset = reader.ReadUInt32();
+            ARM9EntryAddress = reader.ReadUInt32();
+            ARM9RamAddress = reader.ReadUInt32();
+            ARM9Size = reader.ReadUInt32();
+            ARM7RomOffset = reader.ReadUInt32();
+            ARM7EntryAddress = reader.ReadUInt32();
+            ARM7RamAddress = reader.ReadUInt32();
+            ARM7Size = reader.ReadUInt32();
+            FNTOffset = reader.ReadUInt32();
+            FNTSize = reader.ReadUInt32();
+            FATOffset = reader.ReadUInt32();
+            FATSize = reader.ReadUInt32();
+            ARM9OverlayOffset = reader.ReadUInt32();
+            ARM9OverlaySize = reader.ReadUInt32();
+            ARM7OverlayOffset = reader.ReadUInt32();
+            ARM7OverlaySize = reader.ReadUInt32();
+            PortNormalCommands = reader.ReadUInt32();
+            PortKEY1Commands = reader.ReadUInt32();
+            IconTitleOffset = reader.ReadUInt32();
+            SecureAreaCRC16 = reader.ReadUInt16();
+            SecureAreaDelay = reader.ReadUInt16();
+            ARM9AutoLoad = reader.ReadUInt32();
+            ARM7AutoLoad = reader.ReadUInt32();
+            SecureAreaDisable = reader.ReadUInt64();
+            ROMSize = reader.ReadUInt32();
+            HeaderSize = reader.ReadUInt32();
+            Reserved03 = reader.ReadBytes(0x28);
+            Reserved04 = reader.ReadBytes(0x10);
+            Reserved05 = reader.ReadBytes(0x9C);
+            NintendoLogoCRC16 = reader.ReadUInt16();
+            HeaderCRC16 = reader.ReadUInt16();
+            DebugROMOffset = reader.ReadUInt32();
+            DebugSize = reader.ReadUInt32();
+            DebugRAMAddress = reader.ReadUInt32();
+            Reserved06 = reader.ReadBytes(4);
+            Reserved07 = reader.ReadBytes(0x90);
+            // Now, move to the Icon and Title area
+            // DS Icon/Title Spec: http://problemkaputt.de/gbatek.htm#dscartridgeicontitle
+            reader.BaseStream.Position = IconTitleOffset;
+            // And start saving values
+            IconTitleVersion = reader.ReadUInt16();
+            EntriesCRC16 = reader.ReadUInt16();
+            EntriesCRC16v2 = reader.ReadUInt16();
+            EntriesCRC16v3 = reader.ReadUInt16();
+            EntriesCRC16v259 = reader.ReadUInt16();
+            ReservedHeader01 = reader.ReadBytes(0x16);
+            IconBitmap = reader.ReadBytes(0x200);
+            IconPalette = reader.ReadBytes(0x20);
+            LocalizedTitles.Add("Japanese", Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle());
+            LocalizedTitles.Add("English", Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle());
+            LocalizedTitles.Add("French", Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle());
+            LocalizedTitles.Add("German", Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle());
+            LocalizedTitles.Add("Italian", Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle());
+            LocalizedTitles.Add("Spanish", Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle());
+            LocalizedTitles.Add("Chinese", Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle());
+            LocalizedTitles.Add("Korean", Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle());
 
-            // Move a couple of characters
-            // reader.BaseStream.Position += 256;
-            // Get the characters of the title
-            Title = Encoding.Unicode.GetString(reader.ReadBytes(0x100)).SanitizeTitle();
-            // If the title starts with Pokemon
-            if (Title.StartsWith("Pokémon") || Title.StartsWith("The Legend of Zelda:"))
-            {
-                Title = new Regex("\n").Replace(Title, " ", 1);
-            }
-
-            // Then, set the position for the console ID
-            reader.BaseStream.Position = 0x012;
-            // Read the next byte
-            byte ConsoleID = reader.ReadByte();
-            // And obtain the name from the respective dict
-            Console = Consoles.ContainsKey(ConsoleID) ? Consoles[ConsoleID] : $"Unknown (ID: {ConsoleID})";
-
-            // Now is time for the cartdige identifier (also known as game code)
-            // Set the position to the 4 characters code
-            reader.BaseStream.Position = 0xC;
-            // Read the characters and trim the whitespaces
-            string Code = new string(reader.ReadChars(4)).Trim();
-            // To create the real code, we need to get the destination console for the game
+            // Now, final step: prepare the readable basic information
+            // Save the title as: English (RAW Ver.)
+            Title = LocalizedTitles["English"] + $" ({RAWTitle})";
+            // For the console is easy: Grab it from the Dictionary or print it
+            Console = Consoles.ContainsKey(UnitCode) ? Consoles[UnitCode] : $"Unknown (ID: {UnitCode})";
+            // To create the real code, we need to get the destination console for the game and append the identifier
             string BaseID = Console == "Nintendo DSi" ? "TWL-" : "NTR-";
-            Identifier = string.IsNullOrWhiteSpace(Code) ? string.Empty : BaseID + Code + "-";
-
-            // Time for the developer name!
-            // Set the position to the 4 characters code
-            reader.BaseStream.Position = 0x10;
-            // And read the two characters as a string
-            string DevCode = new string(reader.ReadChars(2));
-            // Now, set the developer name
-            Developer = Developers.ContainsKey(DevCode) ? Developers[DevCode] : $"Unknown (Makercode: {DevCode})";
-
-            // Finally, proceed to check the region
-            // The following regions do not exist: B and G
+            Identifier = string.IsNullOrWhiteSpace(GameCode) ? string.Empty : BaseID + GameCode + "-";
+            // Now, set the developer name from the dictionary
+            Developer = Developers.ContainsKey(MakerCode) ? Developers[MakerCode] : $"Unknown (MakerCode: {MakerCode})";
+            // And finally, proceed to check the region
+            // Please note that the following regions do not exist: B and G
             char Character = Identifier[Identifier.Length - 2];
             // If the region is on the DSi only list and this is a DSi Exclusive
             if (DSiRegions.ContainsKey(Character) && Console == "Nintendo DSi")
@@ -216,7 +309,7 @@ namespace Undine.Formats
                 Region = DSRegions[Character].Name;
                 Identifier += DSRegions[Character].Identifier;
             }
-            // Otherwise, set the region to unknown
+            // Otherwise, set the region to unknown and print the region code
             else
             {
                 Region = $"Unknown (code {Character})";
