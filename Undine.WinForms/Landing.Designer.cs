@@ -72,7 +72,7 @@
             this.BasicGroupBox.Controls.Add(this.NameLabel);
             this.BasicGroupBox.Location = new System.Drawing.Point(12, 27);
             this.BasicGroupBox.Name = "BasicGroupBox";
-            this.BasicGroupBox.Size = new System.Drawing.Size(290, 100);
+            this.BasicGroupBox.Size = new System.Drawing.Size(324, 100);
             this.BasicGroupBox.TabIndex = 1;
             this.BasicGroupBox.TabStop = false;
             this.BasicGroupBox.Text = "Basic Information";
@@ -83,7 +83,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DeveloperLabel.Location = new System.Drawing.Point(6, 29);
             this.DeveloperLabel.Name = "DeveloperLabel";
-            this.DeveloperLabel.Size = new System.Drawing.Size(278, 13);
+            this.DeveloperLabel.Size = new System.Drawing.Size(312, 13);
             this.DeveloperLabel.TabIndex = 6;
             this.DeveloperLabel.Text = "Developer";
             this.DeveloperLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -94,7 +94,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RegionLabel.Location = new System.Drawing.Point(6, 68);
             this.RegionLabel.Name = "RegionLabel";
-            this.RegionLabel.Size = new System.Drawing.Size(278, 13);
+            this.RegionLabel.Size = new System.Drawing.Size(312, 13);
             this.RegionLabel.TabIndex = 2;
             this.RegionLabel.Text = "Region";
             this.RegionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -105,7 +105,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConsoleLabel.Location = new System.Drawing.Point(6, 55);
             this.ConsoleLabel.Name = "ConsoleLabel";
-            this.ConsoleLabel.Size = new System.Drawing.Size(278, 13);
+            this.ConsoleLabel.Size = new System.Drawing.Size(312, 13);
             this.ConsoleLabel.TabIndex = 5;
             this.ConsoleLabel.Text = "Console";
             this.ConsoleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,7 +116,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IdentifierLabel.Location = new System.Drawing.Point(6, 42);
             this.IdentifierLabel.Name = "IdentifierLabel";
-            this.IdentifierLabel.Size = new System.Drawing.Size(278, 13);
+            this.IdentifierLabel.Size = new System.Drawing.Size(312, 13);
             this.IdentifierLabel.TabIndex = 4;
             this.IdentifierLabel.Text = "Identifier";
             this.IdentifierLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,7 +127,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameLabel.Location = new System.Drawing.Point(6, 16);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(278, 13);
+            this.NameLabel.Size = new System.Drawing.Size(312, 13);
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Name/Title";
             this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -138,7 +138,7 @@
             this.ImageGroupBox.Controls.Add(this.ImagePictureBox);
             this.ImageGroupBox.Location = new System.Drawing.Point(15, 249);
             this.ImageGroupBox.Name = "ImageGroupBox";
-            this.ImageGroupBox.Size = new System.Drawing.Size(290, 100);
+            this.ImageGroupBox.Size = new System.Drawing.Size(321, 100);
             this.ImageGroupBox.TabIndex = 2;
             this.ImageGroupBox.TabStop = false;
             this.ImageGroupBox.Text = "Image";
@@ -148,7 +148,7 @@
             this.ImagePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ImagePictureBox.Location = new System.Drawing.Point(3, 16);
             this.ImagePictureBox.Name = "ImagePictureBox";
-            this.ImagePictureBox.Size = new System.Drawing.Size(284, 81);
+            this.ImagePictureBox.Size = new System.Drawing.Size(315, 81);
             this.ImagePictureBox.TabIndex = 0;
             this.ImagePictureBox.TabStop = false;
             // 
@@ -199,9 +199,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AdvancedGroupBox.Controls.Add(this.AdvancedListView);
-            this.AdvancedGroupBox.Location = new System.Drawing.Point(308, 27);
+            this.AdvancedGroupBox.Location = new System.Drawing.Point(342, 27);
             this.AdvancedGroupBox.Name = "AdvancedGroupBox";
-            this.AdvancedGroupBox.Size = new System.Drawing.Size(464, 322);
+            this.AdvancedGroupBox.Size = new System.Drawing.Size(430, 322);
             this.AdvancedGroupBox.TabIndex = 4;
             this.AdvancedGroupBox.TabStop = false;
             this.AdvancedGroupBox.Text = "Advanced Information";
@@ -215,7 +215,7 @@
             this.AdvancedListView.HideSelection = false;
             this.AdvancedListView.Location = new System.Drawing.Point(3, 16);
             this.AdvancedListView.Name = "AdvancedListView";
-            this.AdvancedListView.Size = new System.Drawing.Size(458, 303);
+            this.AdvancedListView.Size = new System.Drawing.Size(424, 303);
             this.AdvancedListView.TabIndex = 0;
             this.AdvancedListView.UseCompatibleStateImageBehavior = false;
             this.AdvancedListView.View = System.Windows.Forms.View.Details;
@@ -228,7 +228,7 @@
             // ValueColumnHeader
             // 
             this.ValueColumnHeader.Text = "Value";
-            this.ValueColumnHeader.Width = 301;
+            this.ValueColumnHeader.Width = 275;
             // 
             // LocalizedGroupBox
             // 
@@ -237,7 +237,7 @@
             this.LocalizedGroupBox.Controls.Add(this.LocalizedListView);
             this.LocalizedGroupBox.Location = new System.Drawing.Point(12, 133);
             this.LocalizedGroupBox.Name = "LocalizedGroupBox";
-            this.LocalizedGroupBox.Size = new System.Drawing.Size(290, 110);
+            this.LocalizedGroupBox.Size = new System.Drawing.Size(324, 110);
             this.LocalizedGroupBox.TabIndex = 5;
             this.LocalizedGroupBox.TabStop = false;
             this.LocalizedGroupBox.Text = "Localized Titles";
@@ -251,10 +251,10 @@
             this.LocalizedListView.HideSelection = false;
             this.LocalizedListView.Location = new System.Drawing.Point(3, 16);
             this.LocalizedListView.Name = "LocalizedListView";
-            this.LocalizedListView.Size = new System.Drawing.Size(284, 91);
+            this.LocalizedListView.Size = new System.Drawing.Size(318, 91);
             this.LocalizedListView.TabIndex = 0;
             this.LocalizedListView.UseCompatibleStateImageBehavior = false;
-            this.LocalizedListView.View = System.Windows.Forms.View.Tile;
+            this.LocalizedListView.View = System.Windows.Forms.View.Details;
             // 
             // LanguageColumnHeader
             // 
@@ -263,6 +263,7 @@
             // TitleColumnHeader
             // 
             this.TitleColumnHeader.Text = "Title";
+            this.TitleColumnHeader.Width = 217;
             // 
             // Landing
             // 
