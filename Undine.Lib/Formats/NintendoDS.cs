@@ -15,61 +15,116 @@ namespace Undine.Formats
     /// </summary>
     public class NintendoDS : Format
     {
+        [ExtendedInformation]
         public string RAWTitle { get; }
+        [ExtendedInformation]
         public string GameCode { get; }
+        [ExtendedInformation]
         public string MakerCode { get; }
+        [ExtendedInformation]
         public byte UnitCode { get; }
+        [ExtendedInformation]
         public byte EncryptionSeed { get; }
+        [ExtendedInformation]
         public byte DeviceCapacity { get; }
+        [ExtendedInformation]
         public byte[] Reserved01 { get; }
+        [ExtendedInformation]
         public byte[] Reserved02 { get; }
+        [ExtendedInformation]
         public byte InternalRegion { get; }
+        [ExtendedInformation]
         public byte Version { get; }
+        [ExtendedInformation]
         public bool AutoStart { get; }
+        [ExtendedInformation]
         public uint ARM9RomOffset { get; }
+        [ExtendedInformation]
         public uint ARM9EntryAddress { get; }
+        [ExtendedInformation]
         public uint ARM9RamAddress { get; }
+        [ExtendedInformation]
         public uint ARM9Size { get; }
+        [ExtendedInformation]
         public uint ARM7RomOffset { get; }
+        [ExtendedInformation]
         public uint ARM7EntryAddress { get; }
+        [ExtendedInformation]
         public uint ARM7RamAddress { get; }
+        [ExtendedInformation]
         public uint ARM7Size { get; }
+        [ExtendedInformation]
         public uint FNTOffset { get; }
+        [ExtendedInformation]
         public uint FNTSize { get; }
+        [ExtendedInformation]
         public uint FATOffset { get; }
+        [ExtendedInformation]
         public uint FATSize { get; }
+        [ExtendedInformation]
         public uint ARM9OverlayOffset { get; }
+        [ExtendedInformation]
         public uint ARM9OverlaySize { get; }
+        [ExtendedInformation]
         public uint ARM7OverlayOffset { get; }
+        [ExtendedInformation]
         public uint ARM7OverlaySize { get; }
+        [ExtendedInformation]
         public uint PortNormalCommands { get; }
+        [ExtendedInformation]
         public uint PortKEY1Commands { get; }
+        [ExtendedInformation]
         public uint IconTitleOffset { get; }
+        [ExtendedInformation]
         public ushort SecureAreaCRC16 { get; }
+        [ExtendedInformation]
         public ushort SecureAreaDelay { get; }
+        [ExtendedInformation]
         public uint ARM9AutoLoad { get; }
+        [ExtendedInformation]
         public uint ARM7AutoLoad { get; }
+        [ExtendedInformation]
         public ulong SecureAreaDisable { get; }
+        [ExtendedInformation]
         public uint ROMSize { get; }
+        [ExtendedInformation]
         public uint HeaderSize { get; }
+        [ExtendedInformation]
         public byte[] Reserved03 { get; }
+        [ExtendedInformation]
         public byte[] Reserved04 { get; }
+        [ExtendedInformation]
         public byte[] Reserved05 { get; }
+        [ExtendedInformation]
         public ushort NintendoLogoCRC16 { get; }
+        [ExtendedInformation]
         public ushort HeaderCRC16 { get; }
+        [ExtendedInformation]
         public uint DebugROMOffset { get; }
+        [ExtendedInformation]
         public uint DebugSize { get; }
+        [ExtendedInformation]
         public uint DebugRAMAddress { get; }
+        [ExtendedInformation]
         public byte[] Reserved06 { get; }
+        [ExtendedInformation]
         public byte[] Reserved07 { get; }
 
+        [ExtendedInformation]
         public ushort IconTitleVersion { get; }
+        [ExtendedInformation]
         public ushort EntriesCRC16 { get; }
+        [ExtendedInformation]
         public ushort EntriesCRC16v2 { get; }
+        [ExtendedInformation]
         public ushort EntriesCRC16v3 { get; }
+        [ExtendedInformation]
         public ushort EntriesCRC16v259 { get; }
+        [ExtendedInformation]
         public byte[] ReservedHeader01 { get; }
+        [ExtendedInformation]
         public byte[] IconBitmap { get; }
+        [ExtendedInformation]
         public byte[] IconPalette { get; }
 
         /// <summary>

@@ -14,18 +14,6 @@ namespace Undine.CommandLine
         /// The launch parameters sent via the command line.
         /// </summary>
         private static Options Parameters { get; set; }
-        /// <summary>
-        /// The basic properties of a rom.
-        /// </summary>
-        private static readonly List<string> BasicProperties = new List<string>
-        {
-            "Title",
-            "Identifier",
-            "Developer",
-            "Console",
-            "Region",
-            "LocalizedTitles",
-        };
 
         public static int Main(string[] args)
         {
@@ -75,14 +63,10 @@ namespace Undine.CommandLine
                     Console.WriteLine();
 
                     // Get all of the properties
-                    foreach (PropertyInfo prop in format.GetType().GetProperties())
+                    foreach (KeyValuePair<string, object> prop in format.GetAdvancedInformation())
                     {
-                        // If the property has not been already printed
-                        if (!BasicProperties.Contains(prop.Name))
-                        {
-                            // Do it
-                            Console.WriteLine($"{prop.Name}: {prop.GetValue(format, null)}");
-                        }
+                        // Do it
+                        Console.WriteLine($"{prop.Key}: {prop.Value}");
                     }
                 }
             }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,26 +16,32 @@ namespace Undine.Formats
         /// <summary>
         /// The Title of the game.
         /// </summary>
+        [BasicInformation]
         public string Title { get; protected set; } = "Unavailable";
         /// <summary>
         /// Unique identifier by the console manufacturer.
         /// </summary>
+        [BasicInformation]
         public string Identifier { get; protected set; } = "Unavailable";
         /// <summary>
         /// The name of the developer of the game.
         /// </summary>
+        [BasicInformation]
         public string Developer { get; protected set; } = "Unavailable";
         /// <summary>
         /// Console where this game runs.
         /// </summary>
+        [BasicInformation]
         public string Console { get; protected set; } = "Unavailable";
         /// <summary>
         /// The readable region where this game belongs to.
         /// </summary>
+        [BasicInformation]
         public string Region { get; protected set; } = "Unavailable";
         /// <summary>
         /// The Localized Titles that are part of the media format.
         /// </summary>
+        [BasicInformation]
         public Dictionary<string, string> LocalizedTitles { get; } = new Dictionary<string, string>();
 
         public Format(BinaryReader reader) { }
@@ -58,6 +65,20 @@ namespace Undine.Formats
             }
             // If we failed, say that the file is invalid
             return null;
+        }
+
+        public IEnumerable<KeyValuePair<string, object>> GetAdvancedInformation()
+        {
+            // Get all of the properties
+            foreach (PropertyInfo prop in GetType().GetProperties())
+            {
+                // If the property has the ExtendedInformation attribute
+                if (prop.IsDefined(typeof(ExtendedInformationAttribute), false))
+                {
+                    // Yield that key pair
+                    yield return new KeyValuePair<string, object>(prop.Name, prop.GetValue(this, null));
+                }
+            }
         }
     }
 }
