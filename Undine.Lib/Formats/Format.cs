@@ -32,6 +32,10 @@ namespace Undine.Formats
         /// The readable region where this game belongs to.
         /// </summary>
         public string Region { get; protected set; } = "Unavailable";
+        /// <summary>
+        /// The Localized Titles that are part of the media format.
+        /// </summary>
+        public Dictionary<string, string> LocalizedTitles { get; } = new Dictionary<string, string>();
 
         public Format(BinaryReader reader) { }
 
