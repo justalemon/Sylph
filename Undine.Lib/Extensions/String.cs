@@ -11,7 +11,8 @@
         /// <returns>A System.String without trailing whitespaces or \0.</returns>
         public static string SanitizeTitle(this string _string)
         {
-            return _string.Replace("\0", "").Trim();
+            int index = _string.LastIndexOf('\n');
+            return _string.Substring(0, index == -1 ? _string.Length : index).Replace("\n", " ").Replace("\0", "");
         }
     }
 }
