@@ -15,23 +15,23 @@ namespace Undine.Formats
         /// <summary>
         /// The Title of the game.
         /// </summary>
-        public string Title { get; protected set; }
+        public string Title { get; protected set; } = "Unavailable";
         /// <summary>
         /// Unique identifier by the console manufacturer.
         /// </summary>
-        public string Identifier { get; protected set; }
+        public string Identifier { get; protected set; } = "Unavailable";
         /// <summary>
         /// The name of the developer of the game.
         /// </summary>
-        public string Developer { get; protected set; }
+        public string Developer { get; protected set; } = "Unavailable";
         /// <summary>
         /// Console where this game runs.
         /// </summary>
-        public string Console { get; protected set; }
+        public string Console { get; protected set; } = "Unavailable";
         /// <summary>
         /// The readable region where this game belongs to.
         /// </summary>
-        public string Region { get; protected set; }
+        public string Region { get; protected set; } = "Unavailable";
 
         public Format(BinaryReader reader) { }
 
