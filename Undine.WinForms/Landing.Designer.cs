@@ -222,7 +222,7 @@
             // ValueColumnHeader
             // 
             this.ValueColumnHeader.Text = "Value";
-            this.ValueColumnHeader.Width = 336;
+            this.ValueColumnHeader.Width = 301;
             // 
             // Landing
             // 

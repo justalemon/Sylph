@@ -45,12 +45,21 @@ namespace Undine.WinForms
                     return;
                 }
 
-                // Otherwise, fill the spaces
+                // Otherwise, fill the spaces for the basic info
                 NameLabel.Text = Type.Title;
                 DeveloperLabel.Text = Type.Developer;
                 IdentifierLabel.Text = Type.Identifier;
                 ConsoleLabel.Text = Type.Console;
                 RegionLabel.Text = Type.Region;
+
+                // And the advanced info
+                // But first clear the existing items
+                AdvancedListView.Items.Clear();
+                foreach (KeyValuePair<string, object> prop in Type.GetAdvancedInformation())
+                {
+                    ListViewItem item = AdvancedListView.Items.Add(prop.Key);
+                    item.SubItems.Add(prop.Value.ToString());
+                }
             }
         }
 
