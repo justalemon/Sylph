@@ -23,11 +23,45 @@ namespace Undine.Formats
             { 'U', new RegionSet("United States of America", "U") },
         };
 
-        public PlayStationPortable(BinaryReader reader) : base(reader)
+        public PlayStationPortable(BinaryReader reader, int header = -1) : base(reader)
         {
-            // Create a place to store the position and the metadata size
-            long Start = -1;
-            bool Huge = false;
+            // If no header was sent
+            if (header == -1)
+            {
+                // Check if is compatible and return the header
+                if (!IsCompatible(reader, out header))
+                {
+                    // If is not, throw an exception
+                    throw new InvalidOperationException("The open file is not a PSP UMD.");
+                }
+            }
+
+            // Set our start position plus a couple of other bytes
+            reader.BaseStream.Position = header + 8;
+            // Check if the header is huge or not
+            bool huge = reader.ReadByte() == 0xE4;
+
+            // Move the stream to the location of the identifier
+            reader.BaseStream.Position = header + (huge ? 0x178 : 0x128);
+            // This is a special case, because some PS1/2/3/P discs can have two characters at the end
+            // So we need to grab a total of 11 characters (4 region, 5 numbers and 2 possible characters)
+            Identifier = Encoding.UTF8.GetString(reader.ReadBytes(11)).Trim();
+
+            // Set the position for the title
+            reader.BaseStream.Position = header + (huge ? 0x1AC : 0x158);
+            // Grab the 80 next bytes (short PSF is 80 and long PSF is 84) and save them as the title
+            Title = Encoding.UTF8.GetString(reader.ReadBytes(0x74)).Trim();
+
+            // For the console, the PSP does not has exclusives for certain variations
+            Console = "PlayStation Portable";
+
+            // The region on PlayStation Platforms is the 3rd Character on the Identifier
+            char Character = Identifier[2];
+            Region = Regions.ContainsKey(Character) ? Regions[Character].Name : $"Unknown (code {Character})";
+        }
+
+        public static bool IsCompatible(BinaryReader reader, out int header)
+        {
             // Move the stream to the start just in case
             reader.BaseStream.Position = 0;
 
@@ -45,54 +79,14 @@ namespace Undine.Formats
                     Header[4] == 0x01 && Header[5] == 0x01 && Header[6] == 0x00 && Header[7] == 0x00 &&
                     (Header[8] == 0xE4 || Header[8] == 0xB4))
                 {
-                    // Check if we have a header bigger than normal
-                    Huge = Header[8] == 0xE4;
-                    // Select the correct start position based on the header size
-                    Start = reader.BaseStream.Position + (Huge ? 0x164 : 0x114);
-                    // And break the iterator
-                    break;
+                    // Save the header and return success
+                    header = i * 4096;
+                    return true;
                 }
             }
 
-            // For the UMD Identifier, is exactly after our start point
-            reader.BaseStream.Position = Start;
-            // This is a special case, because some PS1/2/3/P discs can have two characters at the end
-            // So let's grab a total of 11 characters (4 region, 5 numbers and 2 possible characters)
-            byte[] IDBytes = reader.ReadBytes(11);
-            // Create the base of the identifier
-            Identifier = Encoding.UTF8.GetString(IDBytes).Trim();
-
-            // Set the position for the title
-            reader.BaseStream.Position = Start + (Huge ? 0x34 : 0x30);
-            // Grab the 80 next bytes (short PSF is 80 and long PSF is 84)
-            byte[] TitleBytes = new byte[0x74];
-            reader.BaseStream.Read(TitleBytes, 0, 0x74);
-            // And save them as the title
-            Title = Encoding.UTF8.GetString(TitleBytes).Trim();
-
-            // For the console, the PSP does not has exclusives for certain variations
-            Console = "PlayStation Portable";
-
-            // The region on PlayStation Platforms is the 3rd Character on the Identifier
-            char Character = Identifier[2];
-            Region = Regions.ContainsKey(Character) ? Regions[Character].Name : $"Unknown (code {Character})";
-        }
-
-        public static bool IsCompatible(BinaryReader reader)
-        {
-            // I could not find information about a UMD ISO, so I did my quick own research
-            // From 0x8008 to 0x800F, you can find the phrase "PSP GAME" at the same exact position every time
-            // This can be confirmed with the following UMDs: NPJH50701, UCUS98766 and ULUS10490
-
-            // Let's start by moving onto the position of the P
-            reader.BaseStream.Position = 0x8008;
-            // If the following characters make "PSP GAME", this is a UMD
-            if (reader.ReadByte() == 0x50 && reader.ReadByte() == 0x53 && reader.ReadByte() == 0x50 && reader.ReadByte() == 0x20 && // "PSP "
-                reader.ReadByte() == 0x47 && reader.ReadByte() == 0x41 && reader.ReadByte() == 0x4D && reader.ReadByte() == 0x45) // "GAME"
-            {
-                return true;
-            }
-            // Otherwise, return false
+            // If we got here, is because we failed to find the header
+            header = -1;
             return false;
         }
     }

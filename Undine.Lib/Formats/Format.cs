@@ -59,9 +59,9 @@ namespace Undine.Formats
                 return new NintendoDS(reader);
             }
             // And then go to PSP
-            else if (PlayStationPortable.IsCompatible(reader))
+            else if (PlayStationPortable.IsCompatible(reader, out int header))
             {
-                return new PlayStationPortable(reader);
+                return new PlayStationPortable(reader, header);
             }
             // If we failed, say that the file is invalid
             return null;
