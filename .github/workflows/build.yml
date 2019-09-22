@@ -13,9 +13,9 @@ jobs:
         with:
           dotnet-version: "2.2.402"
       - name: Build Library
-        run: dotnet build Undine.Lib/Undine.Lib.csproj --configuration Debug --runtime linux-x64
+        run: dotnet build Sylph.Lib/Sylph.Lib.csproj --configuration Debug --runtime linux-x64
       - name: Build Command Line
-        run: dotnet build Undine.CommandLine/Undine.CommandLine.csproj --configuration Debug --runtime linux-x64
+        run: dotnet build Sylph.CommandLine/Sylph.CommandLine.csproj --configuration Debug --runtime linux-x64
 
   macOS:
     runs-on: macOS-10.14
@@ -25,6 +25,6 @@ jobs:
         with:
           dotnet-version: "2.2.402"
       - name: Build Library
-        run: dotnet build Undine.Lib/Undine.Lib.csproj --configuration Debug --runtime osx-x64
+        run: dotnet build Sylph.Lib/Sylph.Lib.csproj --configuration Debug --runtime osx-x64
       - name: Build Command Line
-        run: dotnet build Undine.CommandLine/Undine.CommandLine.csproj --configuration Debug --runtime osx-x64
+        run: dotnet build Sylph.CommandLine/Sylph.CommandLine.csproj --configuration Debug --runtime osx-x64

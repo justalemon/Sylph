@@ -1,4 +1,4 @@
-﻿namespace Undine.Extensions
+﻿namespace Sylph.Extensions
 {
     /// <summary>
     /// Extensions to be used on your normal every day string's.

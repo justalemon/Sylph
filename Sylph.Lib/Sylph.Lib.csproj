@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>UndineLib</AssemblyName>
-    <RootNamespace>Undine</RootNamespace>
+    <AssemblyName>SylphLib</AssemblyName>
+    <RootNamespace>Sylph</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

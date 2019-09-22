@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Undine.WinForms", "Undine.WinForms\Undine.WinForms.csproj", "{7E5FA768-8630-4F36-8197-4F209BAF530A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sylph.WinForms", "Sylph.WinForms\Sylph.WinForms.csproj", "{7E5FA768-8630-4F36-8197-4F209BAF530A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Undine.Lib", "Undine.Lib\Undine.Lib.csproj", "{1F87FF6D-8D4D-42DB-A004-139CA587AEC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sylph.Lib", "Sylph.Lib\Sylph.Lib.csproj", "{1F87FF6D-8D4D-42DB-A004-139CA587AEC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Undine.CommandLine", "Undine.CommandLine\Undine.CommandLine.csproj", "{9B4C743B-4169-4AC8-8808-4E60A8978F2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sylph.CommandLine", "Sylph.CommandLine\Sylph.CommandLine.csproj", "{9B4C743B-4169-4AC8-8808-4E60A8978F2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

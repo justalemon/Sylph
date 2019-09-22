@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Undine.Extensions;
+using Sylph.Extensions;
 
-namespace Undine.Formats
+namespace Sylph.Formats
 {
     /// <summary>
     /// Nintendo DS and DSi: A pair of handhelds released by Nintendo.

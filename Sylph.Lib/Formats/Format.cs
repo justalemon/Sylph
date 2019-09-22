@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Undine.Formats
+namespace Sylph.Formats
 {
     /// <summary>
     /// Interface that defines the base of all rom formats.

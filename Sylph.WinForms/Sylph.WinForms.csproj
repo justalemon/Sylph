@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7E5FA768-8630-4F36-8197-4F209BAF530A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Undine.WinForms</RootNamespace>
-    <AssemblyName>UndineApp</AssemblyName>
+    <RootNamespace>Sylph.WinForms</RootNamespace>
+    <AssemblyName>SylphApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Undine.WinForms.Program</StartupObject>
+    <StartupObject>Sylph.WinForms.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -94,9 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Undine.Lib\Undine.Lib.csproj">
+    <ProjectReference Include="..\Sylph.Lib\Sylph.Lib.csproj">
       <Project>{1f87ff6d-8d4d-42db-a004-139ca587aec0}</Project>
-      <Name>Undine.Lib</Name>
+      <Name>Sylph.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

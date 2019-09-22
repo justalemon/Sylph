@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Undine.Formats;
+using Sylph.Formats;
 
-namespace Undine.CommandLine
+namespace Sylph.CommandLine
 {
     public class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace Undine.WinForms
+﻿namespace Sylph.WinForms
 {
     partial class Landing
     {
@@ -278,7 +278,7 @@
             this.MainMenuStrip = this.TopMenuStrip;
             this.Name = "Landing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Undine";
+            this.Text = "Sylph";
             this.BasicGroupBox.ResumeLayout(false);
             this.ImageGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).EndInit();

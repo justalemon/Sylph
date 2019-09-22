@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace Undine.CommandLine
+namespace Sylph.CommandLine
 {
     public class Options
     {

@@ -1,4 +1,4 @@
-﻿namespace Undine.WinForms
+﻿namespace Sylph.WinForms
 {
     partial class About
     {
@@ -44,7 +44,7 @@
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(277, 38);
             this.TitleLabel.TabIndex = 0;
-            this.TitleLabel.Text = "Undine";
+            this.TitleLabel.Text = "Sylph";
             this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LogoPictureBox
