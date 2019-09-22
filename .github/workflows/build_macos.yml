@@ -1,0 +1,18 @@
+name: Build on macOS (Lib+CLI)
+
+on:
+  - push
+
+jobs:
+  build:
+    runs-on: macOS-10.14
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "2.2.103" # Change to 2.2.7 when actions/setup-dotnet#30 is merged
+      - name: Build Library
+        run: dotnet build Undine.Lib/Undine.Lib.csproj --configuration Debug --runtime linux-x64
+      - name: Build Command Line
+        run: dotnet build Undine.CommandLine/Undine.CommandLine.csproj --configuration Debug --runtime linux-x64
