@@ -1,0 +1,30 @@
+name: Builds with .NET Core
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  Ubuntu:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "2.2.402"
+      - name: Build Library
+        run: dotnet build Undine.Lib/Undine.Lib.csproj --configuration Debug --runtime linux-x64
+      - name: Build Command Line
+        run: dotnet build Undine.CommandLine/Undine.CommandLine.csproj --configuration Debug --runtime linux-x64
+
+  macOS:
+    runs-on: macOS-10.14
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "2.2.402"
+      - name: Build Library
+        run: dotnet build Undine.Lib/Undine.Lib.csproj --configuration Debug --runtime osx-x64
+      - name: Build Command Line
+        run: dotnet build Undine.CommandLine/Undine.CommandLine.csproj --configuration Debug --runtime osx-x64
