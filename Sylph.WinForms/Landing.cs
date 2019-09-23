@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +19,12 @@ namespace Sylph.WinForms
         public Landing()
         {
             InitializeComponent();
+        }
+
+        private void Landing_Load(object sender, EventArgs e)
+        {
+            // Reset the fields after loading the form
+            ResetFields();
         }
 
         private void ResetFields()

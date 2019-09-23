@@ -279,6 +279,7 @@
             this.Name = "Landing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sylph";
+            this.Load += new System.EventHandler(this.Landing_Load);
             this.BasicGroupBox.ResumeLayout(false);
             this.ImageGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).EndInit();
