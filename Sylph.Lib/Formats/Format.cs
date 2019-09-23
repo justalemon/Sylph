@@ -44,6 +44,9 @@ namespace Sylph.Formats
         [BasicInformation]
         public Dictionary<string, string> LocalizedTitles { get; } = new Dictionary<string, string>();
 
+        /// <summary>
+        /// Initializes a new instance of the Sylph.Formats.Format class.
+        /// </summary>
         public Format(BinaryReader reader) { }
 
         /// <summary>
@@ -67,6 +70,9 @@ namespace Sylph.Formats
             return null;
         }
 
+        /// <summary>
+        /// Gets all of the fields with advanced information.
+        /// </summary>
         public IEnumerable<KeyValuePair<string, object>> GetAdvancedInformation()
         {
             // Get all of the properties

@@ -20,6 +20,9 @@ namespace Sylph
         /// </summary>
         public string Identifier { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the Sylph.RegionSet class.
+        /// </summary>
         public RegionSet(string name, string identifier)
         {
             Name = name;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -15,82 +15,202 @@ namespace Sylph.Formats
     /// </summary>
     public class NintendoDS : Format
     {
+        /// <summary>
+        /// The basic game title used for internal operations.
+        /// </summary>
         [ExtendedInformation]
         public string RAWTitle { get; }
+        /// <summary>
+        /// The 4 character cart code.
+        /// </summary>
         [ExtendedInformation]
         public string GameCode { get; }
+        /// <summary>
+        /// The 2 character developer/publisher identifier.
+        /// </summary>
+        /// <seealso cref="Developers"/>
         [ExtendedInformation]
         public string MakerCode { get; }
+        /// <summary>
+        /// The destination console for this cart.
+        /// </summary>
+        /// <seealso cref="Consoles"/>
         [ExtendedInformation]
         public byte UnitCode { get; }
+        /// <summary>
+        /// Encryption Seed Select (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public byte EncryptionSeed { get; }
+        /// <summary>
+        /// The ID for the chip capacity.
+        /// </summary>
         [ExtendedInformation]
         public byte DeviceCapacity { get; }
+        /// <summary>
+        /// Reserved area #1 (usually zero filled).
+        /// </summary>
         [ExtendedInformation]
         public byte[] Reserved01 { get; }
+        /// <summary>
+        /// Reserved area #2 (usually zero, except on DSi)
+        /// </summary>
         [ExtendedInformation]
         public byte[] Reserved02 { get; }
+        /// <summary>
+        /// The internal region code (0x00=Normal, 0x80=China, 0x40=Korea).
+        /// This is used to restrict the use of iQue Roms (China exclusive) on normal DS/DSi and vice versa.
+        /// </summary>
         [ExtendedInformation]
         public byte InternalRegion { get; }
+        /// <summary>
+        /// The version of this rom.
+        /// </summary>
         [ExtendedInformation]
         public byte Version { get; }
+        /// <summary>
+        /// If the Rom can bypass the "Touch...to continue." during the game boot.
+        /// </summary>
         [ExtendedInformation]
         public bool AutoStart { get; }
+        /// <summary>
+        /// The Rom Offset of the ARM9 code.
+        /// </summary>
         [ExtendedInformation]
         public uint ARM9RomOffset { get; }
+        /// <summary>
+        /// The entry point for the ARM9 code.
+        /// </summary>
         [ExtendedInformation]
         public uint ARM9EntryAddress { get; }
+        /// <summary>
+        /// The RAM address of the ARM9 code.
+        /// </summary>
         [ExtendedInformation]
         public uint ARM9RamAddress { get; }
+        /// <summary>
+        /// The size of the ARM9 code.
+        /// </summary>
         [ExtendedInformation]
         public uint ARM9Size { get; }
+        /// <summary>
+        /// The Rom Offset of the ARM7 code.
+        /// </summary>
         [ExtendedInformation]
         public uint ARM7RomOffset { get; }
+        /// <summary>
+        /// The entry point for the ARM7 code.
+        /// </summary>
         [ExtendedInformation]
         public uint ARM7EntryAddress { get; }
+        /// <summary>
+        /// The RAM address of the ARM7 code.
+        /// </summary>
         [ExtendedInformation]
         public uint ARM7RamAddress { get; }
+        /// <summary>
+        /// The size of the ARM7 code.
+        /// </summary>
         [ExtendedInformation]
         public uint ARM7Size { get; }
+        /// <summary>
+        /// The offset of the File Name Table.
+        /// </summary>
         [ExtendedInformation]
         public uint FNTOffset { get; }
+        /// <summary>
+        /// The size of the File Name Table.
+        /// </summary>
         [ExtendedInformation]
         public uint FNTSize { get; }
+        /// <summary>
+        /// The offset of the File Allocation Table.
+        /// </summary>
         [ExtendedInformation]
         public uint FATOffset { get; }
+        /// <summary>
+        /// The size of the File Allocation Table.
+        /// </summary>
         [ExtendedInformation]
         public uint FATSize { get; }
+        /// <summary>
+        /// File ARM9 overlay_offset (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public uint ARM9OverlayOffset { get; }
+        /// <summary>
+        /// File ARM9 overlay_size (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public uint ARM9OverlaySize { get; }
+        /// <summary>
+        /// File ARM7 overlay_offset (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public uint ARM7OverlayOffset { get; }
+        /// <summary>
+        /// File ARM7 overlay_size (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public uint ARM7OverlaySize { get; }
+        /// <summary>
+        /// Port 0x40001A4 setting for normal commands (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public uint PortNormalCommands { get; }
+        /// <summary>
+        /// Port 0x40001A4 setting for KEY1 commands (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public uint PortKEY1Commands { get; }
+        /// <summary>
+        /// Location of the Icon and Localized Titles on the ROM.
+        /// </summary>
         [ExtendedInformation]
         public uint IconTitleOffset { get; }
+        /// <summary>
+        /// The CRC-16 between 0x20 and 0x7FFF.
+        /// </summary>
         [ExtendedInformation]
         public ushort SecureAreaCRC16 { get; }
+        /// <summary>
+        /// Secure Area Delay (in 131kHz units) (051Eh=10ms or 0D7Eh=26ms) (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public ushort SecureAreaDelay { get; }
+        /// <summary>
+        /// ARM9 Auto Load List Hook RAM Address (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public uint ARM9AutoLoad { get; }
+        /// <summary>
+        /// ARM7 Auto Load List Hook RAM Address (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public uint ARM7AutoLoad { get; }
+        /// <summary>
+        /// Secure Area Disable (by encrypted "NmMdOnly") (usually zero) (GBATEK).
+        /// </summary>
         [ExtendedInformation]
         public ulong SecureAreaDisable { get; }
+        /// <summary>
+        /// The total size of the area being used on the ROM.
+        /// </summary>
         [ExtendedInformation]
         public uint ROMSize { get; }
+        /// <summary>
+        /// The size of the ROM header (0x4000).
+        /// </summary>
         [ExtendedInformation]
         public uint HeaderSize { get; }
+        /// <summary>
+        /// Reserved area #3 (usually zero filled, except 0x88 to 0x93 on DSi).
+        /// </summary>
         [ExtendedInformation]
         public byte[] Reserved03 { get; }
+        /// <summary>
+        /// Reserved area #4 (usually zero filled, if set to "DoNotZeroFillMem" disables fastboot).
+        /// </summary>
         [ExtendedInformation]
         public byte[] Reserved04 { get; }
         [ExtendedInformation]
@@ -176,7 +296,7 @@ namespace Sylph.Formats
             { 'V', new RegionSet("Europe/Schengen Area", "EUR/EUU") },
         };
         /// <summary>
-        /// The list of Nintendo DS/DSi developers.
+        /// The list of Nintendo DS/DSi developers/publishers.
         /// </summary>
         private static readonly Dictionary<string, string> Developers = new Dictionary<string, string>
         {

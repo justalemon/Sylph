@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sylph.Formats
 {
+    /// <summary>
+    /// Class that can handle PlayStation Portable UMDs.
+    /// </summary>
     public class PlayStationPortable : Format
     {
         /// <summary>
