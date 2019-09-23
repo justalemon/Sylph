@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +19,20 @@ namespace Sylph.WinForms
         public Landing()
         {
             InitializeComponent();
+        }
+
+        private void ResetFields()
+        {
+            // Reset the fields with basic information
+            NameLabel.Text = string.Empty;
+            DeveloperLabel.Text = string.Empty;
+            IdentifierLabel.Text = string.Empty;
+            ConsoleLabel.Text = string.Empty;
+            RegionLabel.Text = string.Empty;
+
+            // And empty the items with the extended/advanced information and localized titles
+            AdvancedListView.Items.Clear();
+            LocalizedListView.Items.Clear();
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,6 +60,7 @@ namespace Sylph.WinForms
                 }
 
                 // Otherwise, fill the spaces for the basic info
+                ResetFields();
                 NameLabel.Text = Type.Title;
                 DeveloperLabel.Text = Type.Developer;
                 IdentifierLabel.Text = Type.Identifier;
@@ -53,7 +68,6 @@ namespace Sylph.WinForms
                 RegionLabel.Text = Type.Region;
 
                 // The localized titles
-                LocalizedListView.Items.Clear();
                 foreach (KeyValuePair<string, string> locale in Type.LocalizedTitles)
                 {
                     ListViewItem item = LocalizedListView.Items.Add(locale.Key);
@@ -61,7 +75,6 @@ namespace Sylph.WinForms
                 }
 
                 // And the advanced info
-                AdvancedListView.Items.Clear();
                 foreach (KeyValuePair<string, object> prop in Type.GetAdvancedInformation())
                 {
                     ListViewItem item = AdvancedListView.Items.Add(prop.Key);
