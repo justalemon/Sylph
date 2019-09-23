@@ -1,6 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>Sylph</PackageId>
+    <Authors>Hannele Ruiz</Authors>
+    <Company>Hannele Ruiz</Company>
+    <Product>Sylph</Product>
+    <Description>Sylph is a library that provides metadata for console roms (NDS files, PSP UMDs, etc).</Description>
+    <Copyright>© 2019 Hannele Ruiz</Copyright>
+    <Summary>Sylph is a library that provides metadata for console roms.</Summary>
+    <Title>Sylph</Title>
+    <PackageTags>sylph lemon rom psp nds ndsi dsi</PackageTags>
+    <PackageProjectUrl>https://github.com/justalemon/Sylph</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>SylphLib</AssemblyName>
     <RootNamespace>Sylph</RootNamespace>
@@ -9,7 +23,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\bin\Lib\Debug\</OutputPath>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\bin\Lib\Release\</OutputPath>
   </PropertyGroup>
