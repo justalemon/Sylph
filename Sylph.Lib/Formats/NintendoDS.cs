@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -250,7 +250,7 @@ namespace Sylph.Formats
         /// <summary>
         /// The possible console values of a cart.
         /// </summary>
-        private static readonly Dictionary<byte, string> Consoles = new Dictionary<byte, string>
+        public static readonly Dictionary<byte, string> Consoles = new Dictionary<byte, string>
         {
             { 0, "Nintendo DS" },
             { 2, "Nintendo DS (DSi-enhanced)" },
@@ -259,7 +259,7 @@ namespace Sylph.Formats
         /// <summary>
         /// All of the regions that are used on Nintendo DS carts.
         /// </summary>
-        private static readonly Dictionary<char, RegionSet> DSRegions = new Dictionary<char, RegionSet>
+        public static readonly Dictionary<char, RegionSet> DSRegions = new Dictionary<char, RegionSet>
         {
             { 'A', new RegionSet("Asia", "ASI") },
 
@@ -291,14 +291,14 @@ namespace Sylph.Formats
         /// <summary>
         /// Regions that are used exclusively for DSi carts.
         /// </summary>
-        private static readonly Dictionary<char, RegionSet> DSiRegions = new Dictionary<char, RegionSet>
+        public static readonly Dictionary<char, RegionSet> DSiRegions = new Dictionary<char, RegionSet>
         {
             { 'V', new RegionSet("Europe/Schengen Area", "EUR/EUU") },
         };
         /// <summary>
         /// The list of Nintendo DS/DSi developers/publishers.
         /// </summary>
-        private static readonly Dictionary<string, string> Developers = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> Developers = new Dictionary<string, string>
         {
             { "01", "Nintendo" },
             { "02", "Rocket Games" },
